@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数学|加算</title>
+    <style>
+        :root{
+            --bg-body:#ffffff;
+
+            --bu-end-color:#D7003A;
+            --bu-next-color:#007BBB;
+            --bu-return-color:#007BBB;
+            --bu-answer-color:#AACF53;
+            
+            --text-color-main:#007bbb;
+            --text-color-next:#ffffff;
+
+            --boder-input-color:#707070;
+            --text-color-input:#818181;
+
+            --nav-color:#707070;
+
+            --boder-box:#000000;
+        }
+        body{
+            padding: 0;
+            margin: 0;
+            width: 100vw;
+            height: 100vh;
+        }
+        header{
+            position:fixed;
+            width: 100vw;
+            height: 50px;
+            border-bottom:var(--boder-box) 2px solid;
+            top: 0;
+            left: 0;
+        }
+        header button{
+            border: var(--bu-end-color) 5px solid;
+            text-align: center;
+            color: var(--bu-end-color);
+            position: absolute;
+            top: 50%;
+            left: 30px;
+            transform: translateY(-50%);
+        }
+        header h1{
+            color: var(--text-color-main);
+            font-size: 2em;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50% -50%);
+        }
+        .header-info--box{
+            position: absolute;
+            top: 50%;
+            right: 20%;
+            transform: translate(-50% -50%);
+        }
+        .header-info--box p{
+            position: absolute;
+            left: 0;
+            font-size: 2em;
+            color: var(--text-color-main);
+        }
+        .header-info--box button{
+            width: 50px;
+            height: 50px;
+            border: var(--nav-color) 2px solid;
+            border-radius: 50%;
+            position: absolute;
+            right: 10px;
+            padding: auto;
+        }
+        .header-info--box button span{
+            width: 90%;
+            height: 3px;
+            background-color: var(--nav-color);
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <button>終了</button>
+        <h1>数学・因数分解</h1>
+        <div class="header-info--box">
+            <p>10/01</p>
+            <button>
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+    <main>
+        <div>
+            <h2>10+(10*10)=</h2>
+            <input type="number">
+        </div>
+    </main>
+    <footer>
+        <button>前へ</button>
+        <button>これだけ答え合わせ</button>
+        <button>次へ</button>
+    </footer>
+</body>
+</html>
