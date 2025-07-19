@@ -4,175 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>数学|加算</title>
-    <style>
-        :root{
-            --bg-body:#ffffff;
-            --bg-bu-color:#ffffff00;
 
-            --bu-end-color:#D7003A;
-            --bu-next-color:#007BBB;
-            --bu-return-color:#007BBB;
-            --bu-answer-color:#AACF53;
-            
-            --text-color-main:#007bbb;
-            --text-color-next:#ffffff;
+    <!-- CSSとJavaScriptのロード -->
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
 
-            --boder-input-color:#707070;
-            --text-color-input:#818181;
-
-            --nav-color:#707070;
-
-            --boder-box:#000000;
-
-            --bu-boder-radius:5px;
-            --bu-boder-thick:5px;
-        }
-        body{
-            padding: 0;
-            margin: 0;
-            width: 100vw;
-            height: 100vh;
-            text-align: center;
-        }
-        button{
-            background-color: var(--bg-bu-color);
-            font-size: 1.2em;
-            padding: 5px 15px;
-        }
-        /* ヘッダー */
-        header{
-            position:fixed;
-            width: 100vw;
-            height: 60px;
-            border-bottom:var(--boder-box) 2px solid;
-            top: 0;
-            left: 0;
-        }
-        header button{
-            border: var(--bu-end-color) var(--bu-boder-thick) solid;
-            border-radius: var(--bu-boder-radius);
-            text-align: center;
-            color: var(--bu-end-color);
-            position: absolute;
-            top: 50%;
-            left: 30px;
-            transform: translateY(-50%);
-        }
-        header h1{
-            color: var(--text-color-main);
-            font-size: 2em;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            margin: 0px;
-        }
-        .header-info--box{
-            width: 40%;
-            height: 100%;
-            position: absolute;
-            top: 0;
-            right: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            
-        }
-        .header-info--box p{
-            font-size: 1.5em;
-            color: var(--text-color-main);
-            margin: 0px;
-            margin: auto;
-        }
-        .header-info--box button{
-            width: 40px;
-            height: 40px;
-            border: var(--nav-color) 2px solid;
-            border-radius: 50%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            margin-left: calc(100% - 60px);
-        }
-        .header-info--box button span{
-            width: 20px;
-            height: 2px;
-            background-color: var(--nav-color);
-            margin: 2px 0;
-            display: block;
-        }
-
-        /* メインコンテンツ */
-        main{
-            width: 100%;
-            height: 100%;
-            background-color: var(--bg-body);
-            padding-top: 50px;
-            padding-bottom: 60px;
-            box-sizing: border-box;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        main div{
-            width: 90%;
-            height: 50%;
-            margin: auto;
-        }
-        main div h2{
-            color: var(--text-color-main);
-            font-size: 5em;
-            margin: 0;
-            margin-bottom: 15px;
-        }
-        main div input{
-            width: 100%;
-            margin-top: 10px;
-            height: calc(50% - 10px);
-            border: 2px solid var(--boder-input-color);
-            border-radius: 5px;
-            padding: 10px;
-            font-size: 2.5em;
-            color: var(--text-color-input);
-            box-sizing: border-box;
-            text-align: center;
-        }
-
-        /* ここからフッター */
-        footer {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 60px;
-            background-color: var(--bg-body);
-            border-top: 2px solid var(--boder-box);
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-        }
-        footer button{
-            border: var(--bu-return-color) var(--bu-boder-thick) solid;
-            border-radius: var(--bu-boder-radius);
-            color: var(--text-color-main);
-            cursor: pointer;
-        }
-        #return{
-            color: var(--text-color-main);
-        }
-        #answer{
-            border-color: var(--bu-answer-color);
-            color: var(--bu-answer-color);
-        }
-        #next{
-            background-color: var(--bu-next-color);
-            color: var(--text-color-next);
-            border-color: var(--bu-next-color);
-        }
-
-    </style>
+    <!-- フォントのロード -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=M+PLUS+1p:wght@100;300;400;500;700;800;900&display=swap" rel="stylesheet">
 </head>
 <body>
     <header>
@@ -190,7 +30,7 @@
     <main>
         <div>
             <h2>10+(10*10)=</h2>
-            <input type="number" placeholder="回答を入力してください">
+            <input  type="number" placeholder="回答を入力してください">
         </div>
     </main>
     <footer>
