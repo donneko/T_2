@@ -112,6 +112,7 @@
 
         //ここからボタンの無効化
         //一度リセット
+        answer.disabled = true;
         answer.style.color = ("var(--bu-invalid-color)");
         answer.style.borderColor = ("var(--bu-invalid-color)");
         next.style.color = ("var(--text-color-next)");
@@ -120,6 +121,7 @@
         returnn.style.borderColor = ("var(--bu-next-color)");
         next.style.backgroundColor = ("var(--bu-next-color)");
         next.textContent = "次へ";
+        returnn.disabled =false;
 
         if(!((conten +1)< setting.query)){
             next.style.color = ("var(--bu-end-color)");
@@ -129,7 +131,7 @@
         }else if(!((conten)> 0)){
             returnn.style.color = ("var(--bu-invalid-color)");
             returnn.style.borderColor = ("var(--bu-invalid-color)");
-            console.log((conten -1))
+            returnn.disabled = true;
 
         }
     }
@@ -167,15 +169,22 @@
             anser(Number(user_input.value));
         };
     });
+    //エンターキーで回答確認
+    user_input.addEventListener("keydown",(event) =>{
+        if(event.key === "Enter" && user_input.value !== ""){
+            anser(Number(user_input.value));
+        }
+    });
 
     user_input.addEventListener("input",() => {
-        console.log("aaaaaaaaaaaa")
         if(user_input.value.trim() === ''){
             answer.style.color = ("var(--bu-invalid-color)");
             answer.style.borderColor = ("var(--bu-invalid-color)");
+            answer.disabled = true;
         }else{
             answer.style.color = ("var(--bu-answer-color)");
             answer.style.borderColor = ("var(--bu-answer-color)");
+            answer.disabled = false;
         };
     });
 
@@ -194,14 +203,14 @@
 
     //回答保存
     user_input.addEventListener('input',()=>{
-    user_input_value.splice(conten ,conten ,Number(user_input.value))
+    user_input_value.splice(conten ,1 ,Number(user_input.value))
     })
 
     function anser(user){
 
         //↓ここで表示をユーザーの回答付きにする。
         problem.textContent = (`${text[conten]}=${user}`);
-        user_answer.splice(conten,conten,true)
+        user_answer.splice(conten,1,true)
 
         if(answers[conten] === user){
             problem.style.color = "var(--bu-answer-color)";
