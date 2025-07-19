@@ -36,6 +36,7 @@
         }
         button{
             background-color: var(--bg-bu-color);
+        
         }
         /* ヘッダー */
         header{
@@ -62,13 +63,14 @@
             position: absolute;
             top: 50%;
             left: 50%;
-            transform: translate(-50% -50%);
+            transform: translate(-50%, -50%);
+            margin: 0px;
         }
         .header-info--box{
             position: absolute;
             top: 50%;
             right: 20%;
-            transform: translate(-50% -50%);
+            transform: translate(50%, -50%);
         }
         .header-info--box p{
             position: absolute;
@@ -90,6 +92,7 @@
             height: 3px;
             background-color: var(--nav-color);
             margin-bottom: 10px;
+            display: block;
         }
 
         /* メインコンテンツ */
@@ -97,6 +100,12 @@
             width: 100%;
             height: 100%;
             background-color: var(--bg-body);
+            padding-top: 50px;
+            padding-bottom: 60px;
+            box-sizing: border-box;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         main div{
             width: 90%;
@@ -105,24 +114,41 @@
         }
         main div h2{
             color: var(--text-color-main);
-            font-size: 3em;
+            font-size: 4em;
         }
         main div input{
             width: 100%;
             margin-top: 10px;
             height: calc(50% - 10px);
+            border: 2px solid var(--boder-input-color);
+            border-radius: 5px;
+            padding: 10px;
+            font-size: 1.5em;
+            color: var(--text-color-input);
+            box-sizing: border-box;
+            text-align: center;
         }
 
-        /* ここからフッダー */
+        /* ここからフッター */
         footer {
             position: fixed;
             bottom: 0;
             left: 0;
+            width: 100%;
+            height: 60px;
+            background-color: var(--bg-body);
+            border-top: 2px solid var(--boder-box);
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
         }
         footer button{
-            order: var(--bu-return-color) var(--bu-boder-thick) solid;
+            border: var(--bu-return-color) var(--bu-boder-thick) solid;
             border-radius: var(--bu-boder-radius);
             color: var(--text-color-main);
+            padding: 10px 15px;
+            font-size: 1em;
+            cursor: pointer;
         }
         #return{
             color: var(--text-color-main);
@@ -133,7 +159,8 @@
         }
         #next{
             background-color: var(--bu-next-color);
-            color:var(--text-color-next);
+            color: var(--text-color-next);
+            border-color: var(--bu-next-color);
         }
 
     </style>
