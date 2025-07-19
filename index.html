@@ -36,13 +36,14 @@
         }
         button{
             background-color: var(--bg-bu-color);
-        
+            font-size: 1.2em;
+            padding: 5px 15px;
         }
         /* ヘッダー */
         header{
             position:fixed;
             width: 100vw;
-            height: 50px;
+            height: 60px;
             border-bottom:var(--boder-box) 2px solid;
             top: 0;
             left: 0;
@@ -67,31 +68,39 @@
             margin: 0px;
         }
         .header-info--box{
+            width: 40%;
+            height: 100%;
             position: absolute;
-            top: 50%;
-            right: 20%;
-            transform: translate(50%, -50%);
+            top: 0;
+            right: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            
         }
         .header-info--box p{
-            position: absolute;
-            left: 0;
-            font-size: 2em;
+            font-size: 1.5em;
             color: var(--text-color-main);
+            margin: 0px;
+            margin: auto;
         }
         .header-info--box button{
-            width: 50px;
-            height: 50px;
+            width: 40px;
+            height: 40px;
             border: var(--nav-color) 2px solid;
             border-radius: 50%;
-            position: absolute;
-            right: 10px;
-            padding: auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            margin-left: calc(100% - 60px);
         }
         .header-info--box button span{
-            width: 90%;
-            height: 3px;
+            width: 20px;
+            height: 2px;
             background-color: var(--nav-color);
-            margin-bottom: 10px;
+            margin: 2px 0;
             display: block;
         }
 
@@ -114,7 +123,9 @@
         }
         main div h2{
             color: var(--text-color-main);
-            font-size: 4em;
+            font-size: 5em;
+            margin: 0;
+            margin-bottom: 15px;
         }
         main div input{
             width: 100%;
@@ -123,7 +134,7 @@
             border: 2px solid var(--boder-input-color);
             border-radius: 5px;
             padding: 10px;
-            font-size: 1.5em;
+            font-size: 2.5em;
             color: var(--text-color-input);
             box-sizing: border-box;
             text-align: center;
@@ -146,8 +157,6 @@
             border: var(--bu-return-color) var(--bu-boder-thick) solid;
             border-radius: var(--bu-boder-radius);
             color: var(--text-color-main);
-            padding: 10px 15px;
-            font-size: 1em;
             cursor: pointer;
         }
         #return{
