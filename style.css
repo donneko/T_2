@@ -19,6 +19,8 @@
 
             --bu-boder-radius:5px;
             --bu-boder-thick:5px;
+
+            --bu-invalid-color:#7d7d7db0;
         }
 
         *{

@@ -16,11 +16,11 @@
 </head>
 <body>
     <header>
-        <button>終了</button>
-        <h1>数学・因数分解</h1>
+        <button id="end">終了</button>
+        <h1 id="title">数学・因数分解</h1>
         <div class="header-info--box">
-            <p>10/01</p>
-            <button>
+            <p id="nu">10/01</p>
+            <button id="menu">
                 <span></span>
                 <span></span>
                 <span></span>
@@ -29,8 +29,8 @@
     </header>
     <main>
         <div>
-            <h2>10+(10*10)=</h2>
-            <input  type="number" placeholder="回答を入力してください">
+            <h2 id="problem">10+(10*10)=</h2>
+            <input id="user-input" type="number" placeholder="回答を入力してください" value="">
         </div>
     </main>
     <footer>
@@ -38,5 +38,7 @@
         <button id="answer">これだけ答え合わせ</button>
         <button id="next">次へ</button>
     </footer>
+
+    <script src="./script.js"></script>
 </body>
 </html>
