@@ -36,3 +36,8 @@ function start(){
 bu_start.addEventListener("click",()=>{
     start()
 })
+
+//ここまで送信部分
+
+//保存的
+

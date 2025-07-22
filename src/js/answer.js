@@ -16,9 +16,9 @@
 
         // 問題設定用のオブジェクト
         const setting_in = {
-            max: 10000,
-            min: -10000,
-            query: 999,
+            max: 100,
+            min: -100,
+            query: 2,
             typee:2
         };
         const setting = set();
@@ -26,18 +26,24 @@
         //設定があるか確認
         function set(){
             const par = new URLSearchParams(window.location.search);
-
+            
             const max = par.get('max');
             const min = par.get('min');
             const query = par.get('query');
 
-            const setting = {
-                max:max,
-                min: min,
-                query: query,
-                typee:2
-            };
-
+            let setting;
+            // チェック
+            if(max === null || min === null || query === null){
+                setting = setting_in;
+            }else{
+                setting = {
+                    max: Number(max),
+                    min: Number(min),
+                    query: Number(query),
+                    typee: 2
+                };
+            }
+            console.log(setting);
             return setting;
         }
         console.log(setting);
@@ -56,7 +62,7 @@
         //ユーザーの移動のリスト
         let user_input_value = [];
         let user_answer = [];
-
+        let user_onput_flag = [];
         //回答数
         let conten = 0;
 
@@ -71,7 +77,8 @@
             title.textContent=(`${won_type}・${twe_type}`)
 
             for(let i = 0; i < setting.query;i++){
-                user_input_value.push(null);
+                user_input_value.push(0);
+                user_onput_flag.push(false)
                 user_answer.push(false);
             }
         }
@@ -125,7 +132,11 @@
         }else{
             problem.textContent = (`${text[corrent_answer]}`);
             problem.style.color ="var(--text-color-main)";
-            user_input.value = "";
+            if(user_onput_flag[corrent_answer] === true){
+                user_input.value = user_input_value[corrent_answer];
+            }else{
+                user_input.value = "";
+            }
         }
 
         nu.textContent =text3;
@@ -217,14 +228,39 @@
 
 
     
-
+    //回答を確認を作成
     function end(){
-        alert("未実装です。")
+        let anser_conp = 0;
+        let ans_all= (user_input_value.length);
+        let ans_ContAndUser = []
+
+        for(let i = 0; i < ans_all;i++){
+            
+            ans_ContAndUser.push(`${text[i]}=${user_input_value[i]}`);
+
+            if(user_input_value[i] === answers[i]){
+                anser_conp++
+            }
+        }
+        let conp_pa = ((anser_conp / ans_all) * 100).toFixed(1);
+        const date = Date.now();
+
+        const save = {
+            date:date, //日日
+            correct_rate:conp_pa, //正当率
+            Response_rate:100, //回答率
+            Number_questions:setting.query, //問題数
+            Problem_Answer:answers, //問題の答え
+            Problem_Content:ans_ContAndUser, //問題の内容
+        };
+        console.log(save);
     }
 
     //回答保存
     user_input.addEventListener('input',()=>{
-    user_input_value.splice(conten ,1 ,Number(user_input.value))
+        user_input_value.splice(conten ,1 ,Number(user_input.value))
+        user_onput_flag.splice(conten,1,true)
+        console.log(user_onput_flag)
     })
 
     function anser(user){
