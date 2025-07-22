@@ -47,6 +47,7 @@
             background-color: var(--bg-bu-color);
             font-size: 1.2em;
             padding: 5px 15px;
+            cursor:pointer;
         }
         /* ヘッダー */
         header{
@@ -121,16 +122,118 @@
             padding: 100px 50px;
             box-sizing: border-box;
         }
+        .setting{
+            width: 100%;
+            height: auto;
+            border: #000000 1px solid;
+            padding: 20px 20px;
+            border-radius: 5px;
+
+
+        }
+        .setting--box{
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 50px;
+
+        }
+        .setting--input{
+            display: flex;
+            gap: 10px;
+            font-size: 2em;
+            text-align: left;
+            margin-bottom: 10px;
+            
+        }
+        .setting--input p{
+            margin: 10px 0px;
+        }
+        .setting--input input{
+            text-align: center;
+            font-size: 0.5em;
+            border: #000000 2px solid;
+            border-radius: 5px;
+        }
+        .setting__start button{
+            border: var(--bu-answer-color) var(--bu-boder-thick) solid;
+            border-radius: var(--bu-boder-radius);
+            text-align: center;
+            color: var(--bu-answer-color);
+            font-size: 3em;
+            letter-spacing: 0.5em;
+            padding-left: calc(2em + 0.5em);
+            padding-right: 2em;
+        }
+
+        /* ここから履歴 */
+        .history{
+            width: 100%;
+            height: auto;
+            border: #000000 1px solid;
+            margin-top: 100px;
+        }
+        .history--title{
+            padding: 5px 1em;            
+            border-bottom: #000000 1px solid;
+            display: flex;
+            justify-content: space-between;
+
+        }
+        .history--title h2{
+            margin: auto 0;
+        }
+
+        .history__title--box{
+            display: flex;
+            gap: 1em;
+            padding: 5px 0;
+        }
+        .history__title--box button{
+            width: 40px;
+            height: 40px;
+            margin: auto 0;
+            border-radius: 50%;
+            border: #000000 2px solid;
+            background-image: url(/src/img/relod.svg);
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: 80%;
+            transform: rotate(0deg);
+            transition: all 1s;
+        }
+        .history__title--box button:hover{
+            transform: rotate(360deg);
+        }
+        .history__title--box p{
+            margin: auto;
+            font-size: 1.5em;
+        }
+        .history--body{
+            width: 100%;
+        }
+        .history--box{
+            padding: 10px;
+        }
+        .history--date{
+            width: 100%;
+            height: auto;
+        }
+        .history--date p{
+            color: var(--text-color-input);
+            margin: 0.2em 0;
+            font-size: 1em;
+        }
+
+
         .ratio{
             background-color: var(--bg-answer-correct);
-            padding: 20px;
+            padding: 10px;
             border-radius: 5px;
             border: var(--boder-input-color) var(--boder-ratio) solid;
         }
         .ratio--box{
             width: 100%;
             height: 100%;
-
         }
         .ratio__ratios{
             width: 100%;
@@ -157,17 +260,16 @@
             background-color: var(--bu-error-color);
             border: var(--boder-input-color) var(--boder-ratio) solid;
             border-left: 0px;
-
         }
         .ratio__info{
             width: 100%;
             display: flex;
             align-items: center;
             justify-content:space-around;
-            font-size: 3.5em;
+            font-size: 2.5em;
         }
         .ratio__info p{
-            margin: 15px;
+            margin: 5px 0px;
         }
         .ratio__info p:nth-child(1){
             color: var(--bu-answer-color);
@@ -176,89 +278,54 @@
             color: var(--bu-error-color);
         }
 
-        /* ナビゲーション */
-        nav{
+        .history__title{
             width: 100%;
-            height: auto;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin: 30px 0;
-            font-size: 1.5em;
+            height: 8em;
+            position: relative;
+            
         }
-        nav button:nth-child(1){
-            border: var(--bu-home-color) var(--bu-boder-thick) solid;
+
+
+        .history__title--bu{
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            left: 0;
+            border: #000000 1px solid;
+            padding: 5px;
+            border-radius: 5px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 5px;
+                }
+        .history__title--bu button{
+            display: block;
+            width: 100%;
+        }
+        .history__title--bu button:nth-child(1){
+            border: var(--bu-answer-color) var(--bu-boder-thick) solid;
             border-radius: var(--bu-boder-radius);
             text-align: center;
-            color: var(--bu-home-color);
+            color: var(--bu-answer-color);
         }
-        nav button:nth-child(2){
+        .history__title--bu button:nth-child(2){
             border: var(--text-color-main) var(--bu-boder-thick) solid;
             border-radius: var(--bu-boder-radius);
             text-align: center;
             color: var(--text-color-main);
         }
-
-        /* 回答結果 */
-        .answer{
-            width: 100%;
-            height: auto;
-        }
-        .answer--box{
-            width: 100%;
-            height: 6em;
-            border: var(--boder-input-color) var(--boder-ratio) solid;
+        .history__title h3{
             position: relative;
-            border-top: 0px;
-        }
-        .answer--box:nth-child(1){
-            border-top: var(--boder-input-color) var(--boder-ratio) solid;
-        }
-        .answer--box button{
-            position: absolute;
-            left: 30px;
             top: 50%;
-            border: var(--bu-answer-color) var(--bu-boder-thick) solid;
-            border-radius: var(--bu-boder-radius);
             text-align: center;
-            color: var(--bu-answer-color);
             transform: translateY(-50%);
-
-        }
-        .answer--box p{
-            position: absolute;
-            left: 50%;
-            top: 50%;
-            transform: translate(-50% , -50%);
-            margin: 0px;
             font-size: 4em;
-            color: var(--bu-answer-color);
+            color: var(--text-color-main);
+            margin: 0;
         }
-        .answer__correct{
-            margin: 5px;
-            margin-left: auto;
-            border: var(--boder-input-color) var(--boder-ratio) solid;
-            border-radius: 5px;
-            width:20% ;
-            height:calc(100% - (5px * 2));
-        }
-        .answer__correct--box{
-            width: 100%;
-            height: 100%;
-            position: relative;
-        }
-        .answer__correct--box span{
-            position: absolute;
-            top: 5px;
-            left: 5px;
-            font-size: 1em;
-            color: var(--nav-color);
 
-        }
-        .answer__correct--box p{
-            font-size: 2em;
-            color: var(--nav-color);
-        }
 
         :root{
             --top-link:50px

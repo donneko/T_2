@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>数学|回答確認画面</title>
 
         <!-- CSSとJavaScriptのロード -->
-    <link rel="stylesheet" href="./css/home.css">
+    <link rel="stylesheet" href="./src/css/home.css">
 
     <!-- フォントのロード -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -27,64 +27,73 @@
         </div>
     </header>
     <main>
-        <section>
-            <div>
+        <section class="setting">
+            <div class="setting--box">
                 <div>
-                    <div>
+                    <div class="setting--input">
                         <p>最大</p>
-                        <input type="number" placeholder="数値を入力">
+                        <input id="max-value" type="number" placeholder="数値を入力">
                         <p>桁</p>
                     </div>
                 </div>
                 <div>
-                    <div>
-                        <p>最小</p>
-                        <input type="number" placeholder="数値を入力">
+                    <div class="setting--input">
+                        <p>最小　</p>
+                        <input id="min-value" type="number" placeholder="数値を入力">
                         <p>桁</p>  
                     </div>
-                    <div>
+                    <div class="setting--input">
                         <p>問題数</p>
-                        <input type="number" placeholder="数値を入力">
+                        <input id="nal-value" type="number" placeholder="数値を入力">
                         <p>数</p>
                     </div>
                 </div>
             </div>
-            <div>
-                <button>はじめる</button>
+            <div class="setting__start">
+                <button id="start">はじめる</button>
             </div>
         </section>
-        <section>
-            <div>
+        <section class="history">
+            <div class="history--title">
                 <h2>履歴</h2>
-                <div>
-                    <div>
+                <div class="history__title--box">
+                    <p>1件</p>
+                    <button id="relode"></button>
+                </div>
+            </div>
+            <div class="history--body" id="history-body">
+                <div class="history--box">
+                    <div class="history--date">
+                        <p>2025年07年09日11時11分</p>
+                    </div>
                         <div>
-                            <p>2025年07年09日11時11分</p>
-                        </div>
-                        <div>
-                            <div>
-                                <button>もう一度解く</button>
-                                <button>詳細を見る</button>
+                            <div class="history__title">
+                                <div class="history__title--bu">
+                                    <button>もう一度解く</button>
+                                    <button>詳細を見る</button>
+                                </div>
+                                <h3>数学・因数分解</h3> 
                             </div>
-                            <h3>数学・因数分解</h3>
-                        </div>
-                        <div class="ratio--box">
-                            <div class="ratio__ratios">
-                                <span></span>
-                                <span></span>
-                            </div>
-                            <div class="ratio__info">
-                                <p>正答率：50%</p>
-                                <p>ミス率：50%</p>
+                            <div class="ratio">
+                                <div class="ratio--box">
+                                    <div class="ratio__ratios">
+                                        <span></span>
+                                        <span></span>
+                                    </div>
+                                    <div class="ratio__info">
+                                        <p>正答率：50%</p>
+                                        <p>ミス率：50%</p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
         </section>
     </main>
     <footer id="top-link">
         <a href="#top"></a>
     </footer>
+    <script src="./src/js/home.js"></script>
 </body>
 </html>

@@ -44,6 +44,8 @@
             background-color: var(--bg-bu-color);
             font-size: 1.2em;
             padding: 5px 15px;
+            cursor:pointer;
+
         }
         /* ヘッダー */
         header{

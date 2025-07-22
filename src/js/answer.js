@@ -15,9 +15,9 @@
 
         // 問題設定用のオブジェクト
         const setting = {
-            max: 100,
-            min: -100,
-            query: 10,
+            max: 10000,
+            min: -10000,
+            query: 999,
             typee:2
         };
 
