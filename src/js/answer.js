@@ -13,13 +13,34 @@
         // ここからユーザーの入力を取得
         const user_input = document.getElementById("user-input")
 
+
         // 問題設定用のオブジェクト
-        const setting = {
+        const setting_in = {
             max: 10000,
             min: -10000,
             query: 999,
             typee:2
         };
+        const setting = set();
+
+        //設定があるか確認
+        function set(){
+            const par = new URLSearchParams(window.location.search);
+
+            const max = par.get('max');
+            const min = par.get('min');
+            const query = par.get('query');
+
+            const setting = {
+                max:max,
+                min: min,
+                query: query,
+                typee:2
+            };
+
+            return setting;
+        }
+        console.log(setting);
 
         const prob = {
             1: "+",
@@ -43,9 +64,9 @@
         let won_type = "数学";
         let twe_type = "正負の数";
 
-        set()
+        sett()
         // 初期設定（リストにデータを入れる）
-        function set(){
+        function sett(){
             document.title=(`${won_type}・${twe_type}`)
             title.textContent=(`${won_type}・${twe_type}`)
 
