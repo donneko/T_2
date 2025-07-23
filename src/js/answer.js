@@ -19,7 +19,9 @@
             max: 100,
             min: -100,
             query: 2,
-            typee:2
+            typee:2,
+            key:"local",
+            key_name:"local"
         };
         const setting = set();
 
@@ -30,6 +32,8 @@
             const max = par.get('max');
             const min = par.get('min');
             const query = par.get('query');
+            const key_name = par.get('Key_Number');
+            const key_names = par.get("Key_name")
 
             let setting;
             // チェック
@@ -40,7 +44,9 @@
                     max: Number(max),
                     min: Number(min),
                     query: Number(query),
-                    typee: 2
+                    typee: 2,
+                    key: Number(key_name),
+                    key_name: (key_names),
                 };
             }
             console.log(setting);
@@ -232,7 +238,8 @@
     function end(){
         let anser_conp = 0;
         let ans_all= (user_input_value.length);
-        let ans_ContAndUser = []
+        let ans_ContAndUser = [];
+        const key_name = `${setting.key_name}${setting.key}`;
 
         for(let i = 0; i < ans_all;i++){
             
@@ -241,11 +248,13 @@
             if(user_input_value[i] === answers[i]){
                 anser_conp++
             }
-        }
+        };
+
         let conp_pa = ((anser_conp / ans_all) * 100).toFixed(1);
         const date = Date.now();
 
         const save = {
+            key_name:key_name,
             date:date, //日日
             correct_rate:conp_pa, //正当率
             Response_rate:100, //回答率
@@ -254,6 +263,16 @@
             Problem_Content:ans_ContAndUser, //問題の内容
         };
         console.log(save);
+
+        localStorage.setItem(key_name,JSON.stringify(save))
+
+        const send = {
+            key_name:key_name,
+        }
+        const send_url = new URLSearchParams(send).toString();
+        const url = `/confirm.html?${send_url}`;
+
+        window.location.href = url;
     }
 
     //回答保存
