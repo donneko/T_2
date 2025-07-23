@@ -141,7 +141,7 @@
             align-items: center;
             position: relative;
         }
-        .ratio__ratios span:nth-child(1){
+        #Correct-Bar{
             position: relative;
             width: 50%;
             height: 100%;
@@ -150,7 +150,7 @@
             background-color: var(--bu-answer-color);
             border: var(--boder-input-color) var(--boder-ratio) solid;
         }
-        .ratio__ratios span:nth-child(2){
+        #Miss-Bar{
             position: relative;
             width: 50%;
             height: 100%;
@@ -171,10 +171,11 @@
         .ratio__info p{
             margin: 15px;
         }
-        .ratio__info p:nth-child(1){
+        #Correct-Rate{
             color: var(--bu-answer-color);
+            display: block;
         }
-        .ratio__info p:nth-child(2){
+        #Miss-Rate{
             color: var(--bu-error-color);
         }
 
@@ -211,7 +212,6 @@
             height: 6em;
             border: var(--boder-input-color) var(--boder-ratio) solid;
             position: relative;
-            border-top: 0px;
         }
         .answer--box:nth-child(1){
             border-top: var(--boder-input-color) var(--boder-ratio) solid;
