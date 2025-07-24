@@ -14,16 +14,20 @@
         const user_input = document.getElementById("user-input")
 
 
+//初期
+const query_th = 1
+
 //Start
 const data = set()
 const data_query = data.request;
 const data_key = data.key_name;
-console.log(`【デバッグ】データ:${data_key}:${data_query}`);
-const data_list = data_set(data_key,data_query)
+const data_list = data_set(data_key,data_query);
+updata(data_list,query_th);
 
-//関数達！！↑コードがかわいいいねえええええええええ
+
+//関数達！！↓コードがかわいいいねえええええええええ
 //だいすきいいいいいいい可愛い子供ねええねええええ
-//キモすぎ１！
+//キモすぎ１！👍
 function set(){
     const parment = new URLSearchParams(window.location.search);
 
@@ -79,3 +83,13 @@ function data_set(key,query){
     return (data_set)
 
     };
+
+function updata(data,query){
+
+    const th = (data_list.Problem_Content.length);
+
+    console.log(th)
+    //テキスト変更
+
+    nu.textContent = (`${th}/${query}`)
+    }
