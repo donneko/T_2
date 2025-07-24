@@ -101,21 +101,32 @@ function updata(data,query){
         next.style.borderColor = ("var(--bu-end-color)");
         next.style.backgroundColor = ("var(--bg-bu-color)");
         next.textContent ="終了";
-        console.log("1not")
 
     }
     if(!((data)> 0)){
         returnn.style.color = ("var(--bu-invalid-color)");
         returnn.style.borderColor = ("var(--bu-invalid-color)");
         returnn.disabled = true;
-        console.log("2not")
-
     }
 
 };
 
 
-    //end
+    function anser(user,th){
+
+        //↓ここで表示をユーザーの回答付きにする。
+        problem.textContent = (`${data_list.Problem_Content[(th - 1)]}=${user}`);
+        console.log((th - 1))
+        if(data_list.Problem_Answer[(th - 1)] === user){
+            problem.style.color = "var(--bu-answer-color)";
+        }else{
+            problem.style.color = "var(--bu-end-color)";
+        }
+
+    }
+
+//キーによるイベント
+    //終了
     eend.addEventListener("click",() =>{
         alert("未実装です。")
     })
@@ -124,7 +135,7 @@ function updata(data,query){
     next.addEventListener('click',() => {
         if((query_th +1)< data_list.Problem_Content.length){
             query_th++;
-            update(query_th);
+            update(data_list,query_th);
         }else{
             //end();
             console.log("end")
@@ -135,6 +146,38 @@ function updata(data,query){
     returnn.addEventListener('click',() => {
         if((query_th)> 0){
             query_th--;
-            update(query_th);
+            update(data_list,query_th);
         }
     });
+
+    user_input.addEventListener("input",() => {
+        if(user_input.value.trim() === ''){
+            answer.style.color = ("var(--bu-invalid-color)");
+            answer.style.borderColor = ("var(--bu-invalid-color)");
+            answer.disabled = true;
+        }else{
+            answer.style.color = ("var(--bu-answer-color)");
+            answer.style.borderColor = ("var(--bu-answer-color)");
+            answer.disabled = false;
+        };
+    });
+
+    //メニュー
+    menu.addEventListener("click",()=>{
+        alert("未実装です。")
+    });
+        //回答確認
+    answer.addEventListener('click',() => {
+        if(user_input.value !== ""){
+            anser(Number(user_input.value),query_th);
+        };
+    });
+    //エンターキーで回答確認
+    user_input.addEventListener("keydown",(event) =>{
+        if(event.key === "Enter" && user_input.value !== ""){
+            anser(Number(user_input.value),query_th);
+        }
+    });
+
+
+    //終了
