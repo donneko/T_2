@@ -239,11 +239,14 @@
         let anser_conp = 0;
         let ans_all= (user_input_value.length);
         let ans_ContAndUser = [];
+        let User_in =[]
+
         const key_name = `${setting.key_name}${setting.key}`;
 
         for(let i = 0; i < ans_all;i++){
             
-            ans_ContAndUser.push(`${text[i]}=${user_input_value[i]}`);
+            ans_ContAndUser.push(`${text[i]}`);
+            User_in.push(`${user_input_value[i]}`);
 
             if(user_input_value[i] === answers[i]){
                 anser_conp++
@@ -261,6 +264,7 @@
             Number_questions:setting.query, //問題数
             Problem_Answer:answers, //問題の答え
             Problem_Content:ans_ContAndUser, //問題の内容
+            User_Answers:User_in,
         };
         console.log(save);
 

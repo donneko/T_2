@@ -36,6 +36,7 @@ function set(){
         Number_questions:key_data?.Number_questions ?? null, //問題数
         Problem_Answer:key_data?.Problem_Answer ?? null, //問題の答え
         Problem_Content:key_data?.Problem_Content ?? null, //問題の内容
+        User_Answers:key_data?.User_Answers ?? null, //ユーザーの入力
     }
 
     return (save);
@@ -91,12 +92,19 @@ function AddHtml(){
 
         AddContents.forEach((AddContent,i) =>{
 
-        const AddAnswer = data.Problem_Answer[i];
-
+        const AddAnswer = data?.Problem_Answer[i] ?? 0;
+        const AddUser = data?.User_Answers[i] ?? 0;
+        let color;
+        if( Number(AddAnswer) === Number(AddUser)){
+            color = "var(--bu-answer-color)";
+        }else{
+            color = "var(--bu-error-color)";
+        }
+        
         const AddToHtml= (`
             <div class="answer--box">
                 <button class="retry--button" data-index="${i}">もう一度解く</button>
-                <p>${AddContent}</p>
+                <p style="color:${color};">${AddContent}=${AddUser}</p>
                 <div class="answer__correct">
                     <div class="answer__correct--box">
                         <span>答え</span>
@@ -115,6 +123,7 @@ function AddHtml(){
 history.addEventListener("click", (e) => {
     if (e.target.classList.contains("retry--button")) {
         const index = e.target.dataset.index;
+        requests.push(index)
         send()
     }
 });
@@ -124,12 +133,19 @@ function send(){
 
     const send_data = {
         key_name:data.key_name,
-        request:0,
-    }
+        request:[...requests],
+    };
+
+    requests.length = 0;
+
+    console.log(send_data.request);
+    console.log(requests);
 
     const send_url = new URLSearchParams(send_data).toString();
     const url = `/solving.html?${send_url}`;
-    console.log(url)
+
+    console.log(url);
+
     // window.location.href = url;
 
 }

@@ -13,3 +13,8 @@
         // ここからユーザーの入力を取得
         const user_input = document.getElementById("user-input")
 
+const data = set()
+
+function set(){
+    const parment
+}
