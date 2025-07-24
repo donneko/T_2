@@ -85,18 +85,17 @@ function AddHtml(){
     const query = data.Number_questions;
     console.log(query)
 
-    for(let i = 0;i < query ; i++ ){
 
-        console.log(data)
 
-        let AddContent = data.Problem_Content[i];
-        let AddAnswer = data.Problem_Answer[i];
-        console.log(AddContent)
-        console.log(AddAnswer)
+        const AddContents = data.Problem_Content;
 
-        let AddToHtml= (`
+        AddContents.forEach((AddContent,i) =>{
+
+        const AddAnswer = data.Problem_Answer[i];
+
+        const AddToHtml= (`
             <div class="answer--box">
-                <button>もう一度解く</button>
+                <button class="retry--button" data-index="${i}">もう一度解く</button>
                 <p>${AddContent}</p>
                 <div class="answer__correct">
                     <div class="answer__correct--box">
@@ -108,6 +107,15 @@ function AddHtml(){
         `);
 
         history.innerHTML += AddToHtml;
-    };
 
-}
+        })
+};
+
+//ここからもう一度解く処理
+history.addEventListener("click", (e) => {
+    if (e.target.classList.contains("retry--button")) {
+        const index = e.target.dataset.index;
+
+    }
+});
+
