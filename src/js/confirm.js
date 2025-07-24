@@ -146,6 +146,6 @@ function send(){
 
     console.log(url);
 
-    // window.location.href = url;
+    window.location.href = url;
 
 }
