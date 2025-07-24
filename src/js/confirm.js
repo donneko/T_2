@@ -10,7 +10,7 @@ const BackToHome = document.getElementById("BackToHome");
 const ViewTheIssue = document.getElementById("ViewTheIssue");
 
 const history = document.getElementById("history")
-
+const requests =[]
 //オブジェクト
 
 
@@ -115,7 +115,21 @@ function AddHtml(){
 history.addEventListener("click", (e) => {
     if (e.target.classList.contains("retry--button")) {
         const index = e.target.dataset.index;
-
+        send()
     }
 });
 
+//送信
+function send(){
+
+    const send_data = {
+        key_name:data.key_name,
+        request:0,
+    }
+
+    const send_url = new URLSearchParams(send_data).toString();
+    const url = `/solving.html?${send_url}`;
+    console.log(url)
+    // window.location.href = url;
+
+}
