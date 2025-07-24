@@ -86,10 +86,12 @@ function data_set(key,query){
 
 function updata(data,query){
 
-    const th = (data_list.Problem_Content.length);
-
-    console.log(th)
+    const th = (data.Problem_Content.length);
+    const que = (query - 1);
     //テキスト変更
 
     nu.textContent = (`${th}/${query}`)
+    problem.textContent = (`${data.Problem_Content[que]}=`);
+    user_input.value =(`${data.User_Answers[que]}`)
+
     }

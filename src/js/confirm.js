@@ -127,6 +127,14 @@ history.addEventListener("click", (e) => {
         send()
     }
 });
+//内容を見る
+ViewTheIssue.addEventListener("click",()=>{
+    const AddContents = data.Problem_Content;
+    AddContents.forEach((e,i)=>{
+        requests.push(i)
+    })
+    send()
+})
 
 //送信
 function send(){
