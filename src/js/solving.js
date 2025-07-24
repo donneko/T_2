@@ -15,7 +15,7 @@
 
 
 //初期
-const query_th = 1
+let query_th = 1
 
 //Start
 const data = set()
@@ -94,4 +94,47 @@ function updata(data,query){
     problem.textContent = (`${data.Problem_Content[que]}=`);
     user_input.value =(`${data.User_Answers[que]}`)
 
+
+    //ボタンの変更
+    if(!((data +1)< th)){
+        next.style.color = ("var(--bu-end-color)");
+        next.style.borderColor = ("var(--bu-end-color)");
+        next.style.backgroundColor = ("var(--bg-bu-color)");
+        next.textContent ="終了";
+        console.log("1not")
+
     }
+    if(!((data)> 0)){
+        returnn.style.color = ("var(--bu-invalid-color)");
+        returnn.style.borderColor = ("var(--bu-invalid-color)");
+        returnn.disabled = true;
+        console.log("2not")
+
+    }
+
+};
+
+
+    //end
+    eend.addEventListener("click",() =>{
+        alert("未実装です。")
+    })
+
+    //次
+    next.addEventListener('click',() => {
+        if((query_th +1)< data_list.Problem_Content.length){
+            query_th++;
+            update(query_th);
+        }else{
+            //end();
+            console.log("end")
+        }
+    });
+
+    //戻る
+    returnn.addEventListener('click',() => {
+        if((query_th)> 0){
+            query_th--;
+            update(query_th);
+        }
+    });
