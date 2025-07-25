@@ -19,8 +19,7 @@ let query_th = 1
 const won_type = "数学";
 const twe_type = "正負の数";
 const user_input_value = [];
-const user_answer = [];
-const user_onput_flag = [];
+const user_answer_flag = [];
 
 //Start
 const data = set()
@@ -44,12 +43,11 @@ updata(data_list,query_th);
         title.textContent=(`${won_type}・${twe_type}`)
 
         for(let i = 0; i < setting.Problem_Content.length;i++){
-            user_input_value.push(0);
-            user_onput_flag.push(false)
-            user_answer.push(false);
+            user_input_value.push(null);
+            user_answer_flag.push(false);
         }
 
-        console.log(user_answer);
+        console.log(user_answer_flag);
         console.log(user_input_value);
     };
 
@@ -132,7 +130,8 @@ function updata(data,query){
         updata_button(2,false);
     }
 };
-
+//隣のやつがうざい、まじでツンツンしないでほしい、きもすぎやろ(笑)
+//コメ
 
 function updata_button(af,at){
 console.log(`【デバッグ--ボタン】af:${af},at:${at};`)
@@ -178,6 +177,7 @@ const ret_style = (returnn.style)
         //↓ここで表示をユーザーの回答付きにする。
         problem.textContent = (`${data_list.Problem_Content[(th - 1)]}=${user}`);
         console.log((th - 1));
+        user_answer_flag.splice(th,1,true)
 
         if(data_list.Problem_Answer[(th - 1)] === user){
             problem.style.color = "var(--bu-answer-color)";
@@ -228,8 +228,10 @@ const ret_style = (returnn.style)
             answer.style.borderColor = ("var(--bu-answer-color)");
             answer.disabled = false;
         };
+        user_input_value.splice(query_th,1,user_input.value)
+        console.log(`${user_input_value}:${user_input_value[query_th]}`);
+        
     });
-
     //メニュー
     menu.addEventListener("click",()=>{
         alert("未実装です。")
@@ -237,13 +239,13 @@ const ret_style = (returnn.style)
         //回答確認
     answer.addEventListener('click',() => {
         if(user_input.value !== ""){
-            anser(Number(user_input.value),query_th);
+            anser(Number(user_input_value[query_th]),query_th);
         };
     });
     //エンターキーで回答確認
     user_input.addEventListener("keydown",(event) =>{
-        if(event.key === "Enter" && user_input.value !== ""){
-            anser(Number(user_input.value),query_th);
+        if(event.key === "Enter" && user_input_value[query_th] !== ""){
+            anser(Number(user_input_value[query_th]),query_th);
         }
     });
 
