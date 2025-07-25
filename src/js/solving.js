@@ -16,18 +16,45 @@
 
 //初期
 let query_th = 1
+const won_type = "数学";
+const twe_type = "正負の数";
+const user_input_value = [];
+const user_answer = [];
+const user_onput_flag = [];
 
 //Start
 const data = set()
 const data_query = data.request;
 const data_key = data.key_name;
 const data_list = data_set(data_key,data_query);
+ui_set(data_list,won_type,twe_type)
 updata(data_list,query_th);
 
 
 //関数達！！↓コードがかわいいいねえええええええええ
 //だいすきいいいいいいい可愛い子供ねええねええええ
 //キモすぎ１！👍
+
+        //ジャンル
+
+
+    // 初期設定（リストにデータを入れる）
+    function ui_set(setting,won_type,twe_type){
+        document.title=(`${won_type}・${twe_type}`)
+        title.textContent=(`${won_type}・${twe_type}`)
+
+        for(let i = 0; i < setting.Problem_Content.length;i++){
+            user_input_value.push(0);
+            user_onput_flag.push(false)
+            user_answer.push(false);
+        }
+
+        console.log(user_answer);
+        console.log(user_input_value);
+    };
+
+
+
 function set(){
     const parment = new URLSearchParams(window.location.search);
 
@@ -95,16 +122,20 @@ function updata(data,query){
     user_input.value =(`${data.User_Answers[que]}`)
 
     if(!((que +1)< th)){
-        updata_button(true);
+        updata_button(1,true);
+    }else{
+        updata_button(1,false);
     }
     if(!((que)> 0)){
-        updata_button(false);
-    };
+        updata_button(2,true);
+    }else{
+        updata_button(2,false);
+    }
 };
 
 
-function updata_button(at){
-console.log(at)
+function updata_button(af,at){
+console.log(`【デバッグ--ボタン】af:${af},at:${at};`)
 const ans_style = (answer.style);
 const nex_style = (next.style);
 const ret_style = (returnn.style)
@@ -112,25 +143,31 @@ const ret_style = (returnn.style)
     answer.disabled = true;
     ans_style.color = ("var(--bu-invalid-color)");
     ans_style.borderColor = ("var(--bu-invalid-color)");
-    nex_style.color = ("var(--text-color-next)");
-    ret_style.color = ("var(--text-color-main)");
-    nex_style.borderColor = ("var(--bu-next-color)");
-    ret_style.borderColor = ("var(--bu-next-color)");
-    nex_style.backgroundColor = ("var(--bu-next-color)");
-    next.textContent = "次へ";
-    returnn.disabled =false;
+
 
     //ボタンの変更
-    if(at === true){
+    if(at === true && af === 1){
         nex_style.color = ("var(--bu-end-color)");
         nex_style.borderColor = ("var(--bu-end-color)");
         nex_style.backgroundColor = ("var(--bg-bu-color)");
         next.textContent ="終了";
-    }
-    if(at === false){
+
+    }else if(af === 1){
+    nex_style.color = ("var(--text-color-next)");
+    nex_style.borderColor = ("var(--bu-next-color)");
+    nex_style.backgroundColor = ("var(--bu-next-color)");
+    next.textContent = "次へ";
+    };
+    if(at === true && af === 2){
         ret_style.color = ("var(--bu-invalid-color)");
         ret_style.borderColor = ("var(--bu-invalid-color)");
         returnn.disabled = true;
+
+    }else if(af === 2){
+    ret_style.color = ("var(--text-color-main)");
+    ret_style.borderColor = ("var(--bu-next-color)");
+    returnn.disabled =false;
+
     };
 };
 
@@ -140,20 +177,20 @@ const ret_style = (returnn.style)
 
         //↓ここで表示をユーザーの回答付きにする。
         problem.textContent = (`${data_list.Problem_Content[(th - 1)]}=${user}`);
-        console.log((th - 1))
+        console.log((th - 1));
+
         if(data_list.Problem_Answer[(th - 1)] === user){
             problem.style.color = "var(--bu-answer-color)";
         }else{
             problem.style.color = "var(--bu-end-color)";
-        }
+        };
 
     }
 
-function end(){
-    alert("【メッセージ:定数--end】未実装です。")
-
-}
-
+    //回答を確認を作成
+    function end(){
+    alert("未実装です。")
+    }
 //キーによるイベント
     //終了
     eend.addEventListener("click",() =>{
