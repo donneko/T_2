@@ -119,6 +119,35 @@ function updata(data,query){
     problem.textContent = (`${data.Problem_Content[que]}=`);
     user_input.value =(`${data.User_Answers[que]}`)
 
+    //真ん中
+    console.log(`【デバッグ】ユーザーの回答:${user_input_value[que]},入手する回答番号:${que};`)
+    console.log(user_input_value)
+        if(user_answer_flag[que] === true){
+            //回答済み
+            problem.textContent += (`${user_input_value[que]}`);
+
+            console.log(`【デバッグ】正解:${data_list.Problem_Answer[(que)]},ユーザーの回答:${user_input_value[que]};`)
+            if(Number(data_list.Problem_Answer[(que)]) === Number(user_input_value[que])){
+                problem.style.color = "var(--bu-answer-color)";
+            }else{
+                problem.style.color = "var(--bu-end-color)";
+            };
+
+            user_input.value = user_input_value[que];
+        }else{
+            //回答していない
+            problem.textContent = (`${data.Problem_Content[que]}=`);
+            problem.style.color ="var(--text-color-main)";
+
+            if(user_input_value[que] !== null){
+                user_input.value = user_input_value[que];
+            }else{
+                user_input.value = "";
+            }
+        }
+
+
+    //ボタンを変える処理
     if(!((que +1)< th)){
         updata_button(1,true);
     }else{
@@ -129,6 +158,9 @@ function updata(data,query){
     }else{
         updata_button(2,false);
     }
+    //回答部の最新を取得
+    anser_button();
+
 };
 //隣のやつがうざい、まじでツンツンしないでほしい、きもすぎやろ(笑)
 //コメ
@@ -169,36 +201,49 @@ const ret_style = (returnn.style)
 
     };
 };
+function anser_button(){
 
+        console.log(`【デバッグ】ユーザーの入力値:${(user_input_value[(query_th -1 )])},選択サれている番号:${(query_th -1 )};`)
+        if((user_input_value[(query_th -1 )]) === null){
+            answer.style.color = ("var(--bu-invalid-color)");
+            answer.style.borderColor = ("var(--bu-invalid-color)");
+            answer.disabled = true;
+        }else{
+            answer.style.color = ("var(--bu-answer-color)");
+            answer.style.borderColor = ("var(--bu-answer-color)");
+            answer.disabled = false;
+        };
+}
 
-
-    function anser(user,th){
+//ユーザの回答付きにする。
+function anser(user,th){
 
         //↓ここで表示をユーザーの回答付きにする。
-        problem.textContent = (`${data_list.Problem_Content[(th - 1)]}=${user}`);
-        console.log((th - 1));
-        user_answer_flag.splice(th,1,true)
+        problem.textContent = (`${data_list.Problem_Content[(th)]}=${user}`);
+        console.log((th));
+        user_answer_flag.splice((th),1,true)
 
-        if(data_list.Problem_Answer[(th - 1)] === user){
+        if(data_list.Problem_Answer[(th)] === user){
             problem.style.color = "var(--bu-answer-color)";
         }else{
             problem.style.color = "var(--bu-end-color)";
         };
 
-    }
+}
 
     //回答を確認を作成
-    function end(){
+function end(){
     alert("未実装です。")
-    }
-//キーによるイベント
-    //終了
-    eend.addEventListener("click",() =>{
-        alert("未実装です。")
-    })
+}
 
-    //次
-    next.addEventListener('click',() => {
+//キーによるイベント
+//終了
+eend.addEventListener("click",() =>{
+        alert("未実装です。")
+})
+
+//次
+next.addEventListener('click',() => {
 
         if((query_th +1) <= data_list.Problem_Content.length){
             query_th++;
@@ -208,46 +253,39 @@ const ret_style = (returnn.style)
             console.log(`end:${query_th},apat:${data_list.Problem_Content.length}`);
             end();
         }
-    });
+});
 
     //戻る
-    returnn.addEventListener('click',() => {
+returnn.addEventListener('click',() => {
         if((query_th)> 0){
             query_th--;
             updata(data_list,query_th);
         }
-    });
+});
 
-    user_input.addEventListener("input",() => {
-        if(user_input.value.trim() === ''){
-            answer.style.color = ("var(--bu-invalid-color)");
-            answer.style.borderColor = ("var(--bu-invalid-color)");
-            answer.disabled = true;
-        }else{
-            answer.style.color = ("var(--bu-answer-color)");
-            answer.style.borderColor = ("var(--bu-answer-color)");
-            answer.disabled = false;
-        };
-        user_input_value.splice(query_th,1,user_input.value)
-        console.log(`${user_input_value}:${user_input_value[query_th]}`);
+    //回答ボタン
+user_input.addEventListener("input",() => {
+    anser_button();
+    user_input_value.splice((query_th -1 ),1,user_input.value)
+    console.log(`【デバッグ--ボタン】:${user_input_value}:${user_input_value[(query_th -1 )]}:${(query_th -1 )}`);
         
-    });
+});
     //メニュー
-    menu.addEventListener("click",()=>{
+menu.addEventListener("click",()=>{
         alert("未実装です。")
-    });
+});
         //回答確認
-    answer.addEventListener('click',() => {
+answer.addEventListener('click',() => {
         if(user_input.value !== ""){
-            anser(Number(user_input_value[query_th]),query_th);
+            anser(Number(user_input_value[(query_th -1 )]),(query_th -1 ));
         };
-    });
-    //エンターキーで回答確認
-    user_input.addEventListener("keydown",(event) =>{
-        if(event.key === "Enter" && user_input_value[query_th] !== ""){
-            anser(Number(user_input_value[query_th]),query_th);
+});
+//エンターキーで回答確認
+user_input.addEventListener("keydown",(event) =>{
+        if(event.key === "Enter" && user_input_value[(query_th -1 )] !== ""){
+            anser(Number(user_input_value[(query_th -1 )]),(query_th -1 ));
         }
-    });
+});
 
 
     //終了
