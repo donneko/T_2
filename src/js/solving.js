@@ -94,22 +94,46 @@ function updata(data,query){
     problem.textContent = (`${data.Problem_Content[que]}=`);
     user_input.value =(`${data.User_Answers[que]}`)
 
+    if(!((que +1)< th)){
+        updata_button(true);
+    }
+    if(!((que)> 0)){
+        updata_button(false);
+    };
+};
+
+
+function updata_button(at){
+console.log(at)
+const ans_style = (answer.style);
+const nex_style = (next.style);
+const ret_style = (returnn.style)
+
+    answer.disabled = true;
+    ans_style.color = ("var(--bu-invalid-color)");
+    ans_style.borderColor = ("var(--bu-invalid-color)");
+    nex_style.color = ("var(--text-color-next)");
+    ret_style.color = ("var(--text-color-main)");
+    nex_style.borderColor = ("var(--bu-next-color)");
+    ret_style.borderColor = ("var(--bu-next-color)");
+    nex_style.backgroundColor = ("var(--bu-next-color)");
+    next.textContent = "次へ";
+    returnn.disabled =false;
 
     //ボタンの変更
-    if(!((data +1)< th)){
-        next.style.color = ("var(--bu-end-color)");
-        next.style.borderColor = ("var(--bu-end-color)");
-        next.style.backgroundColor = ("var(--bg-bu-color)");
+    if(at === true){
+        nex_style.color = ("var(--bu-end-color)");
+        nex_style.borderColor = ("var(--bu-end-color)");
+        nex_style.backgroundColor = ("var(--bg-bu-color)");
         next.textContent ="終了";
-
     }
-    if(!((data)> 0)){
-        returnn.style.color = ("var(--bu-invalid-color)");
-        returnn.style.borderColor = ("var(--bu-invalid-color)");
+    if(at === false){
+        ret_style.color = ("var(--bu-invalid-color)");
+        ret_style.borderColor = ("var(--bu-invalid-color)");
         returnn.disabled = true;
-    }
-
+    };
 };
+
 
 
     function anser(user,th){
@@ -125,6 +149,11 @@ function updata(data,query){
 
     }
 
+function end(){
+    alert("【メッセージ:定数--end】未実装です。")
+
+}
+
 //キーによるイベント
     //終了
     eend.addEventListener("click",() =>{
@@ -133,12 +162,14 @@ function updata(data,query){
 
     //次
     next.addEventListener('click',() => {
-        if((query_th +1)< data_list.Problem_Content.length){
+
+        if((query_th +1) <= data_list.Problem_Content.length){
             query_th++;
-            update(data_list,query_th);
+            updata(data_list,query_th);
         }else{
             //end();
-            console.log("end")
+            console.log(`end:${query_th},apat:${data_list.Problem_Content.length}`);
+            end();
         }
     });
 
@@ -146,7 +177,7 @@ function updata(data,query){
     returnn.addEventListener('click',() => {
         if((query_th)> 0){
             query_th--;
-            update(data_list,query_th);
+            updata(data_list,query_th);
         }
     });
 
