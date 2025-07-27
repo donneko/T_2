@@ -203,8 +203,8 @@ const ret_style = (returnn.style)
 };
 function anser_button(){
 
-        console.log(`【デバッグ】ユーザーの入力値:${(user_input_value[(query_th -1 )])},選択サれている番号:${(query_th -1 )};`)
-        if((user_input_value[(query_th -1 )]) === null){
+        console.log(`【デバッグ--アンサーボタン】ユーザーの入力値:${(user_input_value[(query_th -1 )])},選択サれている番号:${(query_th -1 )};`)
+        if(((user_input_value[(query_th -1 )]) === null) || (((user_input_value[(query_th -1 )]) === ""))){
             answer.style.color = ("var(--bu-invalid-color)");
             answer.style.borderColor = ("var(--bu-invalid-color)");
             answer.disabled = true;
@@ -265,10 +265,9 @@ returnn.addEventListener('click',() => {
 
     //回答ボタン
 user_input.addEventListener("input",() => {
-    anser_button();
     user_input_value.splice((query_th -1 ),1,user_input.value)
     console.log(`【デバッグ--ボタン】:${user_input_value}:${user_input_value[(query_th -1 )]}:${(query_th -1 )}`);
-        
+    anser_button();
 });
     //メニュー
 menu.addEventListener("click",()=>{
