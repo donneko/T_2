@@ -25,7 +25,7 @@ const user_answer_flag = [];
 const data = set()
 const data_query = data.request;
 const data_key = data.key_name;
-const data_list = data_set(data_key,data_query);
+const data_list,data_list2 = data_set(data_key,data_query);
 ui_set(data_list,won_type,twe_type)
 updata(data_list,query_th);
 
@@ -98,11 +98,20 @@ function data_set(key,query){
         data_four2.push(content3)//問題の答え
 
     });
+    const data_set = {
+        Problem_Content:data_two2, //問題の内容
+        User_Answers:data_three2, //ユーザーの入力
+        Problem_Answer:data_four2, //問題の答え
+    };
 
+        console.log("===<データ>===")
+        console.log(data_set)
+
+    
         console.log("===<データ>===")
         console.log(data3)
 
-    return (data3)
+    return (data_set,data3)
 
     };
 
@@ -239,14 +248,14 @@ function anser(user,th){
         let User_in =[]
 
         const date = Date.now(); //日日の取得
-        const key_name = data_list.key_name; //キーの取得
+        const key_name = data_list2.key_name; //キーの取得
 
         user_input_value.forEach((index,i)=>{
 
             ans_ContAndUser.push(`${text[i]}`);
             User_in.push(`${index}`);
 
-            if(index === data_list.Problem_Answer[i]){
+            if(index === data_list2.Problem_Answer[i]){
                 anser_conp++
             }
         });
@@ -258,9 +267,9 @@ function anser(user,th){
             date:date, //日日
             correct_rate:conp_pa, //正当率
             Response_rate:100, //回答率
-            Number_questions:data_list.Number_questions, //問題数
-            Problem_Answer:data_list.Problem_Answer, //問題の答え
-            Problem_Content:data_list.Problem_Content, //問題の内容
+            Number_questions:data_list2.Number_questions, //問題数
+            Problem_Answer:data_list2.Problem_Answer, //問題の答え
+            Problem_Content:data_list2.Problem_Content, //問題の内容
             User_Answers:User_in,
         };
         console.log(save);
