@@ -35,8 +35,10 @@ updata(data_list,query_th);
 //キモすぎ１！👍
 
         //ジャンル
+//------------------------------------------
 
-
+//仕事がちゃんとできない、疲れてきた。
+//最近良く眠れない、ちょっとつかれたし、もう転生したいな、
     // 初期設定（リストにデータを入れる）
     function ui_set(setting,won_type,twe_type){
         document.title=(`${won_type}・${twe_type}`)
@@ -96,16 +98,11 @@ function data_set(key,query){
         data_four2.push(content3)//問題の答え
 
     });
-    const data_set = {
-        Problem_Content:data_two2, //問題の内容
-        User_Answers:data_three2, //ユーザーの入力
-        Problem_Answer:data_four2, //問題の答え
-    };
 
         console.log("===<データ>===")
-        console.log(data_set)
+        console.log(data3)
 
-    return (data_set)
+    return (data3)
 
     };
 
@@ -231,10 +228,56 @@ function anser(user,th){
 
 }
 
+
+//------------------------------------------
     //回答を確認を作成
-function end(){
-    alert("未実装です。")
-}
+    //回答を確認を作成
+    function end(){
+        let anser_conp = 0;
+        let ans_all= (user_input_value.length);
+        let ans_ContAndUser = [];
+        let User_in =[]
+
+        const date = Date.now(); //日日の取得
+        const key_name = data_list.key_name; //キーの取得
+
+        user_input_value.forEach((index,i)=>{
+
+            ans_ContAndUser.push(`${text[i]}`);
+            User_in.push(`${index}`);
+
+            if(index === data_list.Problem_Answer[i]){
+                anser_conp++
+            }
+        });
+
+        let conp_pa = ((anser_conp / ans_all) * 100).toFixed(1);
+
+        const save = {
+            key_name:key_name,
+            date:date, //日日
+            correct_rate:conp_pa, //正当率
+            Response_rate:100, //回答率
+            Number_questions:data_list.Number_questions, //問題数
+            Problem_Answer:data_list.Problem_Answer, //問題の答え
+            Problem_Content:data_list.Problem_Content, //問題の内容
+            User_Answers:User_in,
+        };
+        console.log(save);
+
+        // localStorage.setItem(key_name,JSON.stringify(save))
+
+        // const send = {
+        //     key_name:key_name,
+        // }
+        // const send_url = new URLSearchParams(send).toString();
+        // const url = `/confirm.html?${send_url}`;
+        // console.log(url)
+        // window.location.href = url;
+    }
+
+
+
 
 //キーによるイベント
 //終了
@@ -250,7 +293,6 @@ next.addEventListener('click',() => {
             updata(data_list,query_th);
         }else{
             //end();
-            console.log(`end:${query_th},apat:${data_list.Problem_Content.length}`);
             end();
         }
 });
