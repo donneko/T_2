@@ -25,7 +25,7 @@ const user_answer_flag = [];
 const data = set()
 const data_query = data.request;
 const data_key = data.key_name;
-const data_list,data_list2 = data_set(data_key,data_query);
+const [data_list,data_list2] = data_set(data_key,data_query);
 ui_set(data_list,won_type,twe_type)
 updata(data_list,query_th);
 
@@ -111,7 +111,7 @@ function data_set(key,query){
         console.log("===<データ>===")
         console.log(data3)
 
-    return (data_set,data3)
+    return ([data_set,data3])
 
     };
 
@@ -245,7 +245,7 @@ function anser(user,th){
         let anser_conp = 0;
         let ans_all= (user_input_value.length);
         let ans_ContAndUser = [];
-        let User_in =[]
+        const User_in = data_list2.User_Answers
 
         const date = Date.now(); //日日の取得
         const key_name = data_list2.key_name; //キーの取得
@@ -259,6 +259,8 @@ function anser(user,th){
                 anser_conp++
             }
         });
+
+
 
         let conp_pa = ((anser_conp / ans_all) * 100).toFixed(1);
 
