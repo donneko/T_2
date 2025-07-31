@@ -37,7 +37,7 @@ attachHistoryButtons();
 bu_start.addEventListener("click",()=>{
     Key_Number++
     start(Key_Number,key_name)
-    save()
+    save(Key_Number)
 });
 bu_relode.addEventListener("click", () => {
   history();             // ① 作り直す
@@ -45,13 +45,13 @@ bu_relode.addEventListener("click", () => {
 });
 
 //保存的
-function save(){
+function save(KeyNumber){
 
 
         const data_list = {
             version:version,
             key_name:key_name,
-            AllData_Number:Key_Number,
+            AllData_Number:KeyNumber,
         };
 
         console.log(data_list);
@@ -95,7 +95,7 @@ function history(){
 
         const stress = JSON.parse(localStorage.getItem(`${key_name}${j}`))
         const Problem_stress = stress ?? null;
-        
+        if(Problem_stress !== null){
         console.log(Problem_stress)
 
         const correct = Problem_stress?.correct_rate ?? null;
@@ -187,9 +187,15 @@ function history(){
                         </div>
                     </div>
             `)
+        historys.innerHTML +=AddHtml;
 
-
-    historys.innerHTML +=AddHtml;
+        }else{
+            console.log("【エラー】致命的なエラーが発生！！データを消去しないと行けないかも…。大丈夫！自動で解消されるよ！！")
+            const index = (Key_Number -1)
+            save(index)
+            history();
+            attachHistoryButtons();
+        }
     };
 };
 
