@@ -105,7 +105,7 @@ function history(){
         const miss = Math.ceil(Number(error))
         const correc = Math.ceil(Number(correct))
 
-        const utcDate =formatEpochJP(Problem_stress.date);
+        const utcDate =formatEpochJP(Problem_stress.date ?? null);
         console.log(formatEpochJP(Problem_stress.date));
 
         console.log(`${miss}:${correc}`)
