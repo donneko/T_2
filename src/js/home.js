@@ -153,9 +153,12 @@ function history(){
             console.log("ゼロではない")
 
         };
-        if((correct === null)||(correct === NaN)){
+        if((correct === null)||(correct === "NaN")){
             Miss_Rate_text = "【エラー！】データがありません。";
             console.log(`エラー、データがnullまたはnanです。`)
+            Correct_Bar_display = "none";
+            Miss_Bar_display = "none";
+            Correct_Rate_display = "none";
         };
 
         //HTMLを組み立て
