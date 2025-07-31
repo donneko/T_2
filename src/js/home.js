@@ -75,7 +75,7 @@ function start(name,key_name){
     };
 
     const send_url = new URLSearchParams(send).toString();
-    const url = `/index.html?${send_url}`;
+    const url = `/generate.html?${send_url}`;
 
     window.location.href = url;
 }
