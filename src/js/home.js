@@ -22,8 +22,10 @@ console.log(Alldata_list)
 let Key_Number = (Alldata_list?.AllData_Number ?? 0)
 console.log(Key_Number)
 
+//初期
+history();
 
-
+//-------------------
 
 //クリックイベント
 bu_start.addEventListener("click",()=>{
@@ -35,7 +37,7 @@ bu_start.addEventListener("click",()=>{
 //ここまで送信部分
 
 //保存的
-    function save(){
+function save(){
 
 
         const data_list = {
@@ -68,4 +70,9 @@ function start(name,key_name){
     const url = `/index.html?${send_url}`;
 
     window.location.href = url;
+}
+
+
+function history(){
+
 }

@@ -47,7 +47,7 @@ console.log(data)
 set_ber(data.correct_rate)
 function set_ber(correct){
     
-    const error = (100 - correct)
+    const error = (100 - correct).toFixed(1);
     const miss = Math.ceil(Number(error))
     const correc = Math.ceil(Number(correct))
     

@@ -243,7 +243,7 @@ function anser(user,th){
     //回答を確認を作成
     function end(){
         let anser_conp = 0;
-        let ans_all= (user_input_value.length);
+        let ans_all= (data_list2.Number_questions);
         const User_in = data_list2.User_Answers
 
         const date = Date.now(); //日日の取得
@@ -253,14 +253,27 @@ function anser(user,th){
 
             User_in.splice(data.request[i],1,index);
 
-            if(index === data_list2.Problem_Answer[i]){
+        });
+
+        User_in.forEach((index,i)=>{
+            if(index === null){
+                User_in.splice(i,1,'0');
+            }else{
+                User_in.splice(i,1,index);
+            }
+            if(Number(User_in[i]) === Number(data_list2.Problem_Answer[i])){
                 anser_conp++
             }
         });
 
 
-
         let conp_pa = ((anser_conp / ans_all) * 100).toFixed(1);
+
+        console.log(conp_pa)
+        console.log(anser_conp)
+        console.log(ans_all)
+
+
 
         const save = {
             key_name:key_name,
@@ -274,15 +287,15 @@ function anser(user,th){
         };
         console.log(save);
 
-        // localStorage.setItem(key_name,JSON.stringify(save))
+        localStorage.setItem(key_name,JSON.stringify(save))
 
-        // const send = {
-        //     key_name:key_name,
-        // }
-        // const send_url = new URLSearchParams(send).toString();
-        // const url = `/confirm.html?${send_url}`;
-        // console.log(url)
-        // window.location.href = url;
+        const send = {
+            key_name:key_name,
+        }
+        const send_url = new URLSearchParams(send).toString();
+        const url = `/confirm.html?${send_url}`;
+        console.log(url)
+        window.location.href = url;
     }
 
 
