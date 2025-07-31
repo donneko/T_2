@@ -21,6 +21,9 @@
             --bu-boder-thick:5px;
 
             --bu-invalid-color:#7d7d7db0;
+            
+            --fil-bg:blur(4px);
+
         }
 
         *{
@@ -55,6 +58,8 @@
             border-bottom:var(--boder-box) 2px solid;
             top: 0;
             left: 0;
+            backdrop-filter: var(--fil-bg);
+            z-index: 999;
         }
         header button{
             border: var(--bu-end-color) var(--bu-boder-thick) solid;

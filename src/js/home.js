@@ -15,7 +15,7 @@ const bu_detail = document.querySelectorAll(".detail")
 //変更NOW
 const text_load = document.getElementById("text-lodes");
 
-const version = ("0.1") //データの互換性をバージョンによって変わるかもなので、バージョン管理
+const version = ("1") //データの互換性をバージョンによって変わるかもなので、バージョン管理
 const Storage_Key = ("KEY-MAIN")    //メインのストレージのキー
 const key_name =("KEY_TH")  //子のキーの名前
 

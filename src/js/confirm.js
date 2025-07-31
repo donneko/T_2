@@ -10,6 +10,8 @@ const BackToHome = document.getElementById("BackToHome");
 const ViewTheIssue = document.getElementById("ViewTheIssue");
 
 const history = document.getElementById("history")
+const eend = document.getElementById("end")
+
 const requests =[]
 //オブジェクト
 
@@ -124,7 +126,7 @@ history.addEventListener("click", (e) => {
     if (e.target.classList.contains("retry--button")) {
         const index = e.target.dataset.index;
         requests.push(index)
-        send()
+        send(requests)
     }
 });
 //内容を見る
@@ -133,15 +135,31 @@ ViewTheIssue.addEventListener("click",()=>{
     AddContents.forEach((e,i)=>{
         requests.push(i)
     })
-    send()
-})
+    send("All")
+});
+//ホームに戻る
+BackToHome.addEventListener("click",()=>{
+    const url = `/index.html`;
+    window.location.href = url;
+});
+eend.addEventListener("click",()=>{
+    const url = `/index.html`;
+    window.location.href = url;
+});
 
 //送信
-function send(){
+function send(requests){
+
+    let sese;
+    if(requests === "All"){
+        sese = "All"
+    }else{
+        sese = [...requests];
+    }
 
     const send_data = {
         key_name:data.key_name,
-        request:[...requests],
+        request:sese,
     };
 
     requests.length = 0;

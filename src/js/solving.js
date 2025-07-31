@@ -328,7 +328,7 @@ function anser(user,th){
 //キーによるイベント
 //終了
 eend.addEventListener("click",() =>{
-        alert("未実装です。")
+            end();
 })
 
 //次
