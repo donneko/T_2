@@ -317,7 +317,7 @@ function anser(user,th){
             key_name:key_name,
         }
         const send_url = new URLSearchParams(send).toString();
-        const url = `/confirm.html?${send_url}`;
+        const url = `confirm.html?${send_url}`;
         console.log(url)
         window.location.href = url;
     }

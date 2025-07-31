@@ -168,7 +168,7 @@ function send(requests){
     console.log(requests);
 
     const send_url = new URLSearchParams(send_data).toString();
-    const url = `/solving.html?${send_url}`;
+    const url = `solving.html?${send_url}`;
 
     console.log(url);
 

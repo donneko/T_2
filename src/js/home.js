@@ -75,7 +75,7 @@ function start(name,key_name){
     };
 
     const send_url = new URLSearchParams(send).toString();
-    const url = `/generate.html?${send_url}`;
+    const url = `generate.html?${send_url}`;
 
     window.location.href = url;
 }
@@ -233,7 +233,7 @@ function attachHistoryButtons(){
         btn.addEventListener("click", e => {
         const index = e.currentTarget.dataset.index;
         window.location.href =
-            "/solving.html?" + new URLSearchParams({ key_name:`${key_name}${index}`, request:"All" });
+            "solving.html?" + new URLSearchParams({ key_name:`${key_name}${index}`, request:"All" });
         });
     });
 
@@ -241,7 +241,7 @@ function attachHistoryButtons(){
         btn.addEventListener("click", e => {
         const index = e.currentTarget.dataset.index;
         window.location.href =
-            "/confirm.html?" + new URLSearchParams({ key_name:`${key_name}${index}` });
+            "confirm.html?" + new URLSearchParams({ key_name:`${key_name}${index}` });
         });
     });
 }

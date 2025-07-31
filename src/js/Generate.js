@@ -2,7 +2,7 @@
         const eend = document.getElementById("end")
         const menu = document.getElementById("menu")
         //すべて昔のコードなので後で整理
-        
+
 
 
 // 問題設定用のオブジェクト
@@ -143,7 +143,7 @@
             request:"All",
         }
         const send_url = new URLSearchParams(send).toString();
-        const url = `/solving.html?${send_url}`;
+        const url = `solving.html?${send_url}`;
         console.log(url)
         window.location.href = url;
     }
