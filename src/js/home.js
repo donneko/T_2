@@ -153,9 +153,9 @@ function history(){
             console.log("ゼロではない")
 
         };
-        if(correct === null){
+        if((correct === null)||(correct === NaN)){
             Miss_Rate_text = "【エラー！】データがありません。";
-            console.log(`エラー、データがnullです。`)
+            console.log(`エラー、データがnullまたはnanです。`)
         };
 
         //HTMLを組み立て
