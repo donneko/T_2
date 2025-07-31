@@ -23,9 +23,9 @@ const user_answer_flag = [];
 
 //Start
 const data = set()
-const data_query = data.request;
+const data_queryy = data.request;
 const data_key = data.key_name;
-const [data_list,data_list2] = data_set(data_key,data_query);
+const [data_list,data_list2,data_query] = data_set(data_key,data_queryy);
 ui_set(data_list,won_type,twe_type)
 updata(data_list,query_th);
 
@@ -59,19 +59,28 @@ function set(){
     const parment = new URLSearchParams(window.location.search);
 
     const key_name = parment.get('key_name')
-    const request = ((parment.get('request') ?? "").split(",").map(Number));
+
+    let requests
+
+    if((parment.get('request') ?? "") === "All"){
+        requests ="All";
+    }else{
+        requests = ((parment.get('request') ?? "").split(",").map(Number));
+    }
+    const request = requests; 
 
     const save = {
         key_name:key_name ?? null,
         request:request ?? null,
     }
+    
     console.log(`【デバッグ】セーブ:${save}`);
     console.log(save);
 
     return(save);
 }
 
-function data_set(key,query){
+function data_set(key,queryy){
 
     const data1 = localStorage.getItem(key);
     const data2 = JSON.parse(data1);
@@ -85,6 +94,21 @@ function data_set(key,query){
     const data_two2 = [];
     const data_three2 = [];
     const data_four2 = [];
+
+    let query;
+    console.log(queryy)
+    if(queryy === "All"){
+        query = [];
+        data_two1.forEach((e,i)=>{
+            query.push(i);
+        })
+        console.log(`ALL:${query}`);
+    }else{
+        query = queryy;
+        console.log(`指定:${query}`);
+    };
+    
+    console.log(`回数:${query}`);
 
     query.forEach((query,i) => {
         console.log(`【デバッグ】${i}回目のクエリ:${query}`)
@@ -111,7 +135,7 @@ function data_set(key,query){
         console.log("===<データ>===")
         console.log(data3)
 
-    return ([data_set,data3])
+    return ([data_set,data3,query])
 
     };
 
@@ -251,7 +275,7 @@ function anser(user,th){
 
         user_input_value.forEach((index,i)=>{
 
-            User_in.splice(data.request[i],1,index);
+            User_in.splice(data_query[i],1,index);
 
         });
 

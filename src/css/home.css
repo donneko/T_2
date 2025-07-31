@@ -213,6 +213,10 @@
         }
         .history--box{
             padding: 10px;
+                        border-top: #000000 2px solid;
+        }
+        .history--box:nth-child(1){
+            border-top: 0px;
         }
         .history--date{
             width: 100%;
