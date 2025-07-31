@@ -193,8 +193,7 @@ function history(){
             console.log("【エラー】致命的なエラーが発生！！データを消去しないと行けないかも…。大丈夫！自動で解消されるよ！！")
             const index = (Key_Number -1)
             save(index)
-            history();
-            attachHistoryButtons();
+            window.location.reload();
         }
     };
 };
