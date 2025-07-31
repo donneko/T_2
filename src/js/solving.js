@@ -244,7 +244,6 @@ function anser(user,th){
     function end(){
         let anser_conp = 0;
         let ans_all= (user_input_value.length);
-        let ans_ContAndUser = [];
         const User_in = data_list2.User_Answers
 
         const date = Date.now(); //日日の取得
@@ -252,8 +251,7 @@ function anser(user,th){
 
         user_input_value.forEach((index,i)=>{
 
-            ans_ContAndUser.push(`${text[i]}`);
-            User_in.push(`${index}`);
+            User_in.splice(data.request[i],1,index);
 
             if(index === data_list2.Problem_Answer[i]){
                 anser_conp++
