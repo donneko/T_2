@@ -139,11 +139,11 @@ ViewTheIssue.addEventListener("click",()=>{
 });
 //ホームに戻る
 BackToHome.addEventListener("click",()=>{
-    const url = `/index.html`;
+    const url = `index.html`;
     window.location.href = url;
 });
 eend.addEventListener("click",()=>{
-    const url = `/index.html`;
+    const url = `index.html`;
     window.location.href = url;
 });
 
