@@ -12,6 +12,8 @@ const ViewTheIssue = document.getElementById("ViewTheIssue");
 const history = document.getElementById("history")
 const eend = document.getElementById("end")
 
+const title = document.getElementById("title")
+
 const requests =[]
 //オブジェクト
 
@@ -45,6 +47,26 @@ function set(){
 }
 console.log(data)
 
+set_title()
+//タイトルの取得
+function set_title(){
+            //名前の取得
+        const name = data?.name ?? null;
+        if(name !== null){
+            history_name = name;
+            color = "var(--text-color-main)";
+        }else{
+            history_name = "【エラー！】タイトルのデータがありません。";
+            color = "var(--bu-error-color)";
+            font_size ="1.5em";
+        };
+        console.log(history_name);
+        
+        title.textContent=history_name;
+        title.style.color =color;
+        title.style.fontSize=font_size;
+}
+
 //バーの表示
 set_ber(data.correct_rate)
 function set_ber(correct){
@@ -53,27 +75,35 @@ function set_ber(correct){
     const miss = Math.ceil(Number(error))
     const correc = Math.ceil(Number(correct))
     
-    Correct_Bar.style.width = (`${correct}%`);
-    Miss_Bar.style.width = (`${error}%`)
+    const interference_set = 10;  //ラインをどれぐらいにじませるかの値
+    const interference = ((interference_set/2) * (1-(Math.abs((correct/100)-(miss/100)))));
+    console.log(Math.abs(((correct/100)-(miss/100))))
+    console.log((interference_set/2))
+    console.log(interference)
 
-    console.log(`${miss}:${correc}`)
+    console.log(`${correc}:${miss}`);
 
+
+    //バーの色を変える。
+    Correct_Bar.style.background = `linear-gradient(to right, var(--bu-answer-color) ${correc-(interference)}%, var(--bu-error-color) ${correc+(interference)}%)`;
+
+    //テキストの表示や非表示の処理
     if(correc === 0){
         Miss_Rate.textContent = (`ミス率:${error}%`)
-        Correct_Bar.style.display = "none";
         Correct_Rate.style.display = "none";
         console.log(`${error}`)
     }else if(miss === 0){
-        Miss_Bar.style.display = "none";
         Miss_Rate.style.display = "none";
         Correct_Rate.textContent = (`正答率:${correct}%`)
         console.log(`正答率を表示${correct}`)
     }else{
+        //エラー（例外）処理 NULLとか
         Correct_Rate.textContent = (`正答率:${correct}%`)
         Miss_Rate.textContent = (`ミス率:${error}%`)
         console.log("ゼロではない")
 
     };
+
     if(correct === null){
         Miss_Rate.textContent = "【エラー！】データがありません。";
         console.log(`エラー、データがnullです。`)

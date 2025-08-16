@@ -9,6 +9,7 @@
 
     <!-- CSSとJavaScriptのロード -->
     <link rel="stylesheet" href="./src/css/confirm.css">
+    <link rel="stylesheet" href="./src/common/css/header.css">
 
     <!-- フォントのロード -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -17,9 +18,9 @@
 
 </head>
 <body>
-    <header>
+    <header class="Close" id="header">
         <button id="end">ホームに戻る</button>
-        <h1 id="title">数学・因数分解</h1>
+        <h1 id="title">詳細画面</h1>
         <div class="header-info--box">
             <button id="menu">
                 <span></span>
@@ -27,6 +28,10 @@
                 <span></span>
             </button>
         </div>
+        <nav id="menu_box">
+            <a href="./index.html">ホーム画面</a>
+        </nav>
+        <script src="./src/common/js/header.js"></script>
     </header>
     
     <main>
@@ -34,7 +39,6 @@
             <div class="ratio--box">
                 <div class="ratio__ratios">
                     <span id="Correct-Bar"></span>
-                    <span id="Miss-Bar"></span>
                 </div>
                 <div class="ratio__info">
                     <p id="Correct-Rate">正答率：50%</p>
@@ -47,16 +51,6 @@
             <button id="ViewTheIssue">問題内容を見る</button>
         </nav>
         <section class="answer" id="history">
-            <!-- <div class="answer--box">
-                <button>もう一度解く</button>
-                <p>10*203=2000</p>
-                <div class="answer__correct">
-                    <div class="answer__correct--box">
-                        <span>答え</span>
-                        <p>2020</p>
-                    </div>
-                </div>
-            </div> -->
         </section>
 
     </main>

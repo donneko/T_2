@@ -6,7 +6,8 @@
     <title>数学|加算</title>
 
     <!-- CSSとJavaScriptのロード -->
-    <link rel="stylesheet" href="./src/css/answer.css">
+    <link rel="stylesheet" href="./src/css/solving.css">
+    <link rel="stylesheet" href="./src/common/css/header.css">
 
     <!-- フォントのロード -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -14,18 +15,22 @@
     <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=M+PLUS+1p:wght@100;300;400;500;700;800;900&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header>
+    <header class="Close" id="header">
         <button id="end">終了</button>
         <h1 id="title">数学・因数分解</h1>
         <div class="header-info--box">
-            <p id="nu">10/01</p>
             <button id="menu">
                 <span></span>
                 <span></span>
                 <span></span>
             </button>
         </div>
+        <nav id="menu_box">
+            <a href="./index.html">ホーム画面</a>
+        </nav>
+        <script src="./src/common/js/header.js"></script>
     </header>
+    
     <main>
         <div>
             <h2 id="problem">データが見つかりませんでした。</h2>

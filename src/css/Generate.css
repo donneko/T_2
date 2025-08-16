@@ -1,5 +1,6 @@
         :root{
             --bg-body:#ffffff;
+            --bg-main:#f2f2f2;
             --bg-bu-color:#ffffff00;
 
             --bu-end-color:#D7003A;
@@ -51,16 +52,6 @@
 
         }
         /* ヘッダー */
-        header{
-            position:fixed;
-            width: 100vw;
-            height: 60px;
-            border-bottom:var(--boder-box) 2px solid;
-            top: 0;
-            left: 0;
-            backdrop-filter: var(--fil-bg);
-            z-index: 999;
-        }
         header button{
             border: var(--bu-end-color) var(--bu-boder-thick) solid;
             border-radius: var(--bu-boder-radius);
@@ -71,57 +62,12 @@
             left: 30px;
             transform: translateY(-50%);
         }
-        header h1{
-            color: var(--text-color-main);
-            font-size: 2em;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            margin: 0px;
-        }
-        .header-info--box{
-            width: 40%;
-            height: 100%;
-            position: absolute;
-            top: 0;
-            right: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            
-        }
-        .header-info--box p{
-            font-size: 1.5em;
-            color: var(--text-color-main);
-            margin: 0px;
-            margin: auto;
-        }
-        .header-info--box button{
-            width: 40px;
-            height: 40px;
-            border: var(--nav-color) 2px solid;
-            border-radius: 50%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            margin-left: calc(100% - 60px);
-        }
-        .header-info--box button span{
-            width: 20px;
-            height: 2px;
-            background-color: var(--nav-color);
-            margin: 2px 0;
-            display: block;
-        }
 
         /* メインコンテンツ */
         main{
             width: 100%;
             height: 100%;
-            background-color: var(--bg-body);
+            background-color: var(--bg-main);
             padding-top: 50px;
             box-sizing: border-box;
             display: flex;

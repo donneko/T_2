@@ -7,6 +7,7 @@
 
     <!-- CSSとJavaScriptのロード -->
     <link rel="stylesheet" href="./src/css/generate.css">
+    <link rel="stylesheet" href="./src/common/css/header.css">
 
     <!-- フォントのロード -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -14,8 +15,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=M+PLUS+1p:wght@100;300;400;500;700;800;900&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header>
-        <button id="end">終了</button>
+    <header class="Close" id="header">
+        <button id="end">中止</button>
         <h1 id="title">生成中</h1>
         <div class="header-info--box">
             <button id="menu">
@@ -24,6 +25,10 @@
                 <span></span>
             </button>
         </div>
+        <nav id="menu_box">
+            <a href="./index.html">ホーム画面</a>
+        </nav>
+        <script src="./src/common/js/header.js"></script>
     </header>
     <main>
         <div>
