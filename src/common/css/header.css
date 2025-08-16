@@ -65,6 +65,9 @@
 header nav{
     width: 100vw;
     height: 100vh;
+    max-width: 100vw;
+
+
     background-color: #00000090;
     z-index: 1000;        
     backdrop-filter: var(--fil-bg);
@@ -72,6 +75,9 @@ header nav{
     display: flex;
     justify-content: center;
     align-items: center;
+    transform: translateX(0%);
+    opacity: 1;
+    margin: auto;
 }
 header nav a{
     width: 100%;
@@ -83,8 +89,8 @@ header nav a{
 
 }
 .Close nav{
-    display: none;
-
+    transform: translateX(100%);
+    opacity: 0;
 }
 .Close .header-info--box button{
     background-color: #ffffff00; 

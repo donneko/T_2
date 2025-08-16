@@ -35,13 +35,50 @@ attachHistoryButtons();
 
 //クリックイベント
 bu_start.addEventListener("click",()=>{
-    Key_Number++
-    start(Key_Number,key_name)
-    save(Key_Number)
+    console.log("これこれこれお"+(val_min.value)*(val_max.value)*(val_nal.value));
+
+    if( 0===(val_min.value)*(val_max.value)*(val_nal.value)){
+        
+        val_min.placeholder="0または空白は使用できません。";
+        val_max.placeholder="0または空白は使用できません。";
+        val_nal.placeholder="0または空白は使用できません。";
+
+        val_min.style.setProperty("--inpot-pl-color","#da0303")
+        val_max.style.setProperty("--inpot-pl-color","#da0303")
+        val_nal.style.setProperty("--inpot-pl-color","#da0303")
+
+        val_min.value="";
+        val_max.value="";
+        val_nal.value="";
+
+    }else{
+
+        val_min.placeholder="数値を入力";
+        val_max.placeholder="数値を入力";
+        val_nal.placeholder="数値を入力";
+
+        val_min.style.setProperty("--inpot-pl-color","#898989")
+        val_max.style.setProperty("--inpot-pl-color","#898989")
+        val_nal.style.setProperty("--inpot-pl-color","#898989")
+        
+        
+        if(val_nal.value >!0){
+            Key_Number++
+            start(Key_Number,key_name)
+            save(Key_Number)
+        }else{
+            val_nal.placeholder="1以上の数値が必要";
+            val_nal.style.setProperty("--inpot-pl-color","#da0303")
+
+            val_nal.value="";
+        }
+
+    }
+
 });
 bu_relode.addEventListener("click", () => {
-  history();             // ① 作り直す
-  attachHistoryButtons(); // ② もう一度装着 ←ココがポイント
+    history();
+    attachHistoryButtons(); 
 });
 
 //保存的
@@ -58,7 +95,10 @@ function save(KeyNumber){
 
         localStorage.setItem(Storage_Key,JSON.stringify(data_list));
         console.log(localStorage.getItem(Storage_Key))
-    }
+}
+
+console.log("これこれこれお"+(val_min.value)*(val_max.value)*(val_nal.value));
+
 
     //始まる処理
 function start(name,key_name){
@@ -110,12 +150,17 @@ function history(){
 
         console.log(`${miss}:${correc}`)
 
+        const interference_set = 10;  //ラインをどれぐらいにじませるかの値
+        const interference = ((interference_set/2) * (1-(Math.abs((correct/100)-(miss/100)))));
+
+
+
+    //バーの色を変える。
+    const bar = `linear-gradient(to right, var(--bu-answer-color) ${correc-(interference)}%, var(--bu-error-color) ${correc+(interference)}%)`;
 
 
         //設定
-        let Miss_Bar_display;
         let Miss_Rate_display;
-        let Correct_Bar_display;
         let Correct_Rate_display;
         let Miss_Rate_text;
         let Correct_Rate_text;
@@ -135,24 +180,24 @@ function history(){
             font_size ="1.5em";
         };
         console.log(history_name)
-        
+
+
         //ここでパーセンの表示
         if(correc === 0){
             Miss_Rate_text = (`ミス率:${error}%`)
-            Correct_Bar_display = "none";
             Correct_Rate_display = "none";
             console.log(`${error}`)
         }else if(miss === 0){
-            Miss_Bar_display = "none";
             Miss_Rate_display = "none";
             Correct_Rate_text = (`正答率:${correct}%`)
             console.log(`正答率を表示${correct}`)
         }else{
+             //エラー（例外）処理 NULLとか
             Correct_Rate_text = (`正答率:${correct}%`)
             Miss_Rate_text = (`ミス率:${error}%`)
             console.log("ゼロではない")
-
         };
+
         if((correct === null)||(correct === "NaN")){
             Miss_Rate_text = "【エラー！】データがありません。";
             console.log(`エラー、データがnullまたはnanです。`)
@@ -178,8 +223,7 @@ function history(){
                             <div class="ratio">
                                 <div class="ratio--box">
                                     <div class="ratio__ratios">
-                                        <span style="width:${correct}%;display:${Correct_Bar_display}"></span>
-                                        <span style="width:${error}%;display:${Miss_Bar_display}"></span>
+                                        <span style="background:${bar};"></span>
                                     </div>
                                     <div class="ratio__info">
                                         <p style="display:${Correct_Rate_display}">${Correct_Rate_text}</p>

@@ -3,7 +3,6 @@
         const returnn = document.getElementById("return")
         const answer = document.getElementById("answer")
         const next = document.getElementById("next")
-        const menu = document.getElementById("menu")
 
         //  ここから表示メッセージなどの取得
         const title = document.getElementById("title")
@@ -30,15 +29,10 @@ ui_set(data_list,won_type,twe_type)
 updata(data_list,query_th);
 
 
-//関数達！！↓コードがかわいいいねえええええええええ
-//だいすきいいいいいいい可愛い子供ねええねええええ
-//キモすぎ１！👍
 
-        //ジャンル
 //------------------------------------------
 
-//仕事がちゃんとできない、疲れてきた。
-//最近良く眠れない、ちょっとつかれたし、もう転生したいな、
+
     // 初期設定（リストにデータを入れる）
     function ui_set(setting,won_type,twe_type){
         document.title=(`${won_type}・${twe_type}`)
@@ -308,6 +302,7 @@ function anser(user,th){
             Problem_Answer:data_list2.Problem_Answer, //問題の答え
             Problem_Content:data_list2.Problem_Content, //問題の内容
             User_Answers:User_in,
+            name:`${won_type}・${twe_type}`,
         };
         console.log(save);
 
@@ -357,10 +352,7 @@ user_input.addEventListener("input",() => {
     console.log(`【デバッグ--ボタン】:${user_input_value}:${user_input_value[(query_th -1 )]}:${(query_th -1 )}`);
     anser_button();
 });
-    //メニュー
-menu.addEventListener("click",()=>{
-        alert("未実装です。")
-});
+
         //回答確認
 answer.addEventListener('click',() => {
         if(user_input.value !== ""){

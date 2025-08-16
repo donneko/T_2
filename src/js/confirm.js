@@ -30,18 +30,7 @@ function set(){
     const key = parment.get('key_name');
     const in_data = localStorage.getItem(key);
     const confirmation_data = JSON.parse(in_data);
-    const key_data = confirmation_data ? confirmation_data : null;
-
-    const save = {
-        key_name:key_data?.key_name ?? null,
-        date:key_data?.data ?? null, //日日
-        correct_rate:key_data?.correct_rate ?? null, //正当率
-        Response_rate:key_data?.Response_rate ?? null, //回答率
-        Number_questions:key_data?.Number_questions ?? null, //問題数
-        Problem_Answer:key_data?.Problem_Answer ?? null, //問題の答え
-        Problem_Content:key_data?.Problem_Content ?? null, //問題の内容
-        User_Answers:key_data?.User_Answers ?? null, //ユーザーの入力
-    }
+    const save = confirmation_data ? confirmation_data : null;
 
     return (save);
 }
@@ -50,7 +39,12 @@ console.log(data)
 set_title()
 //タイトルの取得
 function set_title(){
-            //名前の取得
+        //変数の定義
+        let history_name;
+        let color;
+        let font_size;
+
+        //名前の取得
         const name = data?.name ?? null;
         if(name !== null){
             history_name = name;
@@ -77,9 +71,6 @@ function set_ber(correct){
     
     const interference_set = 10;  //ラインをどれぐらいにじませるかの値
     const interference = ((interference_set/2) * (1-(Math.abs((correct/100)-(miss/100)))));
-    console.log(Math.abs(((correct/100)-(miss/100))))
-    console.log((interference_set/2))
-    console.log(interference)
 
     console.log(`${correc}:${miss}`);
 

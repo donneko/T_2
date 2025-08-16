@@ -3,7 +3,6 @@
         const returnn = document.getElementById("return")
         const answer = document.getElementById("answer")
         const next = document.getElementById("next")
-        const menu = document.getElementById("menu")
 
         //  ここから表示メッセージなどの取得
         const title = document.getElementById("title")
@@ -226,10 +225,7 @@
         };
     });
 
-    //メニュー
-    menu.addEventListener("click",()=>{
-        alert("未実装です。")
-    });
+
 
 
 

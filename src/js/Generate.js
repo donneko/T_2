@@ -1,6 +1,5 @@
         //  ここからボタン取得
         const eend = document.getElementById("end")
-        const menu = document.getElementById("menu")
         //すべて昔のコードなので後で整理
 
 
@@ -156,9 +155,5 @@
     window.location.href = url;
     })
 
-    //メニュー
-    menu.addEventListener("click",()=>{
-        alert("未実装です。")
-    });
 
 
