@@ -173,7 +173,6 @@ function history(){
         if(name !== null){
             history_name = name;
             color = "var(--text-color-main)";
-            font_size ="4em";
         }else{
             history_name = "【エラー！】タイトルのデータがありません。";
             color = "var(--bu-error-color)";
