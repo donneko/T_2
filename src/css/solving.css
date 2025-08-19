@@ -32,7 +32,19 @@
 
             --fil-bg:blur(4px);
         }
-
+        html #dark  {
+            --bg-body: #606060;
+            --bg-main: #323232;
+            --bg-bu-color: #ffffff00;
+            --bg-header: #3f3f3fae;
+            --text-color-next: #ffffff;
+            --text-color-main: #009cee;
+            --history--boder-color: #cfcfcf;
+            --bg-answer-correct: #434343;
+            --input-color:#3c3b3b;
+            --bu-answer-color: #aaed0e;
+            --info-text-color: #969696;
+        }
         *{
             /* フォントの設定 */
             font-family: "M PLUS 1p", sans-serif;
@@ -91,6 +103,8 @@
 
         /* メインコンテンツ */
         main{
+            min-height: 425px;
+            min-width: 320px;
             width: 100%;
             height: 100%;
             background-color: var(--bg-main);
@@ -130,6 +144,8 @@
             box-sizing: border-box;
             text-align: center;
             box-shadow: 0px 0px 5px var(--history--shadow-color);
+            background-color: var(--input-color);
+
         }
         main div input:hover{
             border: 1px solid var(--boder-input-color);
@@ -166,4 +182,26 @@
             background-color: var(--bu-next-color);
             color: var(--text-color-next);
             border-color: var(--bu-next-color);
+        }
+
+        @media screen and (max-width:425px) {
+            main div h2 {
+                font-size: 3.5em;
+            }
+            #title {
+                font-size: 1.2em;
+                left: calc(50% - 15px);
+                transform: translate(-50%, -50%);
+            }
+            main div input {
+                font-size:1.5em;
+            }
+            header button {
+                top: 50%;
+                left: 10px;
+                transform: translateY(-50%);
+            }
+            #menu {
+                margin-left: calc(100% - 40px);
+            }
         }

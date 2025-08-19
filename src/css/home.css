@@ -1,4 +1,4 @@
-        :root{
+:root{
             --bg-body:#ffffff;
             --bg-main:#f2f2f2;
             --bg-bu-color:#ffffff00;
@@ -35,6 +35,21 @@
             --fil-bg:blur(4px);
 
             --max-width:1024px;
+
+            --input-color:#ffffff;
+        }
+        html .mode--dark {
+            --bg-body: #606060;
+            --bg-main: #323232;
+            --bg-bu-color: #ffffff00;
+            --bg-header: #3f3f3fae;
+            --text-color-next: #ffffff;
+            --text-color-main: #009cee;
+            --history--boder-color: #cfcfcf;
+            --bg-answer-correct: #434343;
+            --input-color:#3c3b3b;
+            --bu-answer-color: #aaed0e;
+            --info-text-color: #969696;
         }
 
         *{
@@ -109,11 +124,15 @@
         .setting--input p{
             margin: 10px 0px;
         }
+        .setting--input p:nth-child(1) {
+            width: 3em;
+        }
         .setting--input input{
             text-align: center;
             font-size: 0.5em;
             border: #000000 2px solid;
             border-radius: 5px;
+            background-color: var(--input-color);
         }
         .setting--input input::placeholder{
             color: var(--inpot-pl-color,#898989);
@@ -170,10 +189,13 @@
             background-position: center;
             background-size: 80%;
             transform: rotate(0deg);
-            transition: all 1s;
+            transition: all 0s;
+
         }
-        .history__title--box button:hover{
+        .history__title--box button:active{
             transform: rotate(360deg);
+            transition: all 0.5s;
+
         }
         .history__title--box p{
             margin: auto;
@@ -342,9 +364,6 @@
                 display: flex;
                 justify-content: center;
             }
-            .setting--input p:nth-child(1){
-                width:3em;
-            }
             .setting__start button {
                 font-size: 3em;
                 letter-spacing: 0.4em;
@@ -399,7 +418,7 @@
                 margin: 0px;
             }
             .setting--input input {
-            height: 3em;
+            height: 4em;
             }
             main {
                 overflow: hidden;
@@ -411,4 +430,4 @@
                 box-sizing: border-box;
             }
 }
-        
+

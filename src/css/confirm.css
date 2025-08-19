@@ -36,7 +36,19 @@
 
             --max-width:1024px;
         }
-
+        body .mode--dark {
+            --bg-body: #606060;
+            --bg-main: #323232;
+            --bg-bu-color: #ffffff00;
+            --bg-header: #3f3f3fae;
+            --text-color-next: #ffffff;
+            --text-color-main: #009cee;
+            --history--boder-color: #cfcfcf;
+            --bg-answer-correct: #434343;
+            --input-color:#3c3b3b;
+            --bu-answer-color: #aaed0e;
+            --info-text-color: #969696;
+        }
         *{
             /* フォントの設定 */
             font-family: "M PLUS 1p", sans-serif;
@@ -54,6 +66,8 @@
             width: 100vw;
             height: 100vh;
             text-align: center;
+            font-size:clamp( 12px, 1.3vw, 22px) ;
+
         }
         button{
             background-color: var(--bg-bu-color);
@@ -203,6 +217,7 @@
         }
         .answer--box p{
             position: absolute;
+            width: 100%;
             left: 50%;
             top: 50%;
             transform: translate(-50% , -50%);
@@ -268,6 +283,76 @@
             
         }
 
-        @media screen and(max-width:700px) {
-            
+        @media screen and (max-width:1024px) {
+            .answer--box {
+                height: 16em;
+            }
+            .answer__correct {
+                top: 25%;
+                transform: translateY(-50%);
+                height: calc(6em - (5px * 2));
+            }
+
+            .answer--box button {
+                left: 30px;
+                top: 25%;
+
+                transform: translateY(-50%);
+            }
+            .answer--box p {
+                
+                left: 50%;
+                top: 100%;
+                transform: translate(-50%,-100% );
+                margin: 0px;
+                font-size: 6em;
+            }
+            .answer__correct--box p{
+                top: 50%;
+                font-size: 2em;
+                transform: translate(-50%, -50%);
+
+            }
+            .ratio__info {
+                font-size: 3.5em;
+            }
+        }
+        @media screen and (max-width:768px){
+            body {
+                padding: 0;
+                margin: 0;
+                width: 100vw;
+                height: 100vh;
+                text-align: center;
+                font-size: clamp(8px, 1.3vw, 22px);
+            }
+            .ratio__info {
+                font-size: 3em;
+            }
+            .answer--box p {
+                font-size: 5em;
+            }
+            .answer__correct--box p {
+                font-size: 2em;
+            }
+
+            .ratio__info p {
+                margin: 15px 5px;
+            }
+            header{
+                font-size:clamp( 12px, 1.3vw, 22px) ;
+
+            }
+        }
+        @media screen and (max-width:500px){
+            header button{
+                display: none;
+            }
+                        main {
+                overflow: hidden;
+                padding: 80px 15px;
+            }
+            .ratio {
+                padding: 20px 10px;
+            }
         }

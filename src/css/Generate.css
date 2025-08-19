@@ -26,7 +26,19 @@
             --fil-bg:blur(4px);
 
         }
-
+        html #dark  {
+            --bg-body: #606060;
+            --bg-main: #323232;
+            --bg-bu-color: #ffffff00;
+            --bg-header: #3f3f3fae;
+            --text-color-next: #ffffff;
+            --text-color-main: #009cee;
+            --history--boder-color: #cfcfcf;
+            --bg-answer-correct: #434343;
+            --input-color:#3c3b3b;
+            --bu-answer-color: #aaed0e;
+            --info-text-color: #969696;
+        }
         *{
             /* フォントの設定 */
             font-family: "M PLUS 1p", sans-serif;
