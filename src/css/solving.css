@@ -32,7 +32,7 @@
 
             --fil-bg:blur(4px);
         }
-        html #dark  {
+        html .mode--dark {
             --bg-body: #606060;
             --bg-main: #323232;
             --bg-bu-color: #ffffff00;

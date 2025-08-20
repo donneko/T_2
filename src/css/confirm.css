@@ -36,7 +36,7 @@
 
             --max-width:1024px;
         }
-        body .mode--dark {
+        html .mode--dark {
             --bg-body: #606060;
             --bg-main: #323232;
             --bg-bu-color: #ffffff00;
@@ -48,6 +48,7 @@
             --input-color:#3c3b3b;
             --bu-answer-color: #aaed0e;
             --info-text-color: #969696;
+            --nav-color: #dddddd;
         }
         *{
             /* フォントの設定 */
@@ -137,7 +138,7 @@
             height: 100%;
             left: 0;
             display: block;
-            background: linear-gradient(to right, var(--bu-answer-color) 50%, var(--bu-error-color) 100%);
+            background: linear-gradient(to right, var(--bu-answer-color) 25%, var(--bu-error-color) 75%);
         }
         .ratio__info{
             width: 100%;
@@ -213,6 +214,7 @@
             text-align: center;
             color: var(--bu-answer-color);
             transform: translateY(-50%);
+            z-index: 10;
 
         }
         .answer--box p{
