@@ -7,9 +7,12 @@
             --bu-error-color:#D7003A;
             --bu-answer-color:#AACF53;
             --bu-home-color:#F8B500;
-            
+            --bu-first_time:var(--bg-answer-correct);
+
             --text-color-main:#007bbb;
             --text-color-next:#ffffff;
+            --text-color:#000000;
+            --text-color-first_time:#464646;
 
             --boder-input-color:#707070;
             --text-color-input:#818181;
@@ -49,7 +52,11 @@
             --bg-answer-correct: #434343;
             --input-color:#3c3b3b;
             --bu-answer-color: #aaed0e;
-            --info-text-color: #969696;
+            --info-text-color: #c7c7c7;
+            --text-color:#e2e2e2;
+            --bu-first_time:var(--bg-answer-correct);
+            --text-color-first_time:var(--text-color);
+
         }
 
         *{
@@ -69,8 +76,8 @@
             width: 100vw;
             height: 100vh;
             text-align: center;
-            font-size:clamp( 12px, 1.3vw, 22px) ;
-
+            font-size:clamp( 12px, 1.3vw, 22px);
+            color: var(--text-color);
         }
         button{
             background-color: var(--bg-bu-color);
@@ -321,6 +328,57 @@
             margin: 0;
         }
         /* ここまで、【通常のデータ表示】 */
+        /* ここから【初めてですか？】 */
+        .first_time{
+            width: auto;
+            height: auto;
+            color: var(--text-color-first_time);
+        }
+        .first_time__info{
+            border-radius: 5px;
+            font-size: 6em;
+            padding: 10px;
+            background-color: var(--bg-answer-correct);
+            box-shadow: 0px 0px var(--history--shadow-size) var(--history--shadow-color);
+        }
+        .first_time__info p{
+            margin: 0;
+        }
+        .first_time__info p:nth-child(2){
+            margin-top: 20px;
+            font-size: 0.6em;
+        }
+        .first_time__button {
+            height: auto;
+            display: flex;
+            justify-content: space-around;
+            padding: 10px 5px;
+            
+        }
+        .first_time__button button{
+            display: block;
+            width:7em;
+            height: 2em;
+            border-radius: 10px;
+            font-size: 2em;
+            color: var(--text-color-first_time);
+            box-shadow: 0px 1px 3px var(--history--shadow-color);
+
+        }
+        #first_time{
+            background-color: var(--bg-answer-correct);        
+            border:  0px;
+            filter: blur(0px);
+        }
+        #first_time:hover{
+            filter: blur(2px);
+        }
+        #skip{
+            border: var(--bg-answer-correct) 3px solid;
+        }
+        #skip:hover{
+            background-color: var(--bg-answer-correct);        
+        }
 
 
 

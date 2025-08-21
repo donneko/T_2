@@ -19,12 +19,23 @@ const version = ("1") //データの互換性をバージョンによって変�
 const Storage_Key = ("KEY-MAIN")    //メインのストレージのキー
 const key_name =("KEY_TH")  //子のキーの名前
 
-const storedRaw = JSON.parse(localStorage.getItem(`${Storage_Key}`))
-const Alldata_list = storedRaw ? storedRaw : null;
+const storedRaw = JSON.parse(localStorage.getItem(Storage_Key))
+const Alldata_lists = storedRaw ? storedRaw : null;
 
+let Alldata_lista;
+if (Alldata_lists === null) {
+    save(0);
+    const storedRaw = JSON.parse(localStorage.getItem(Storage_Key));
+    Alldata_lista = storedRaw ? storedRaw : null;
+} else {
+    Alldata_lista = Alldata_lists;
+}
+
+const Alldata_list = Alldata_lista;
 console.log(Alldata_list)
 
-let Key_Number = (Alldata_list?.AllData_Number ?? 0)
+
+let Key_Number = (Alldata_list?.AllData_Number ?? 0);
 console.log(Key_Number)
 
 //初期
@@ -89,15 +100,12 @@ function save(KeyNumber){
             version:version,
             key_name:key_name,
             AllData_Number:KeyNumber,
+            How_to_use:false,
         };
 
-        console.log(data_list);
-
         localStorage.setItem(Storage_Key,JSON.stringify(data_list));
-        console.log(localStorage.getItem(Storage_Key))
 }
 
-console.log("これこれこれお"+(val_min.value)*(val_max.value)*(val_nal.value));
 
 
     //始まる処理
@@ -123,14 +131,38 @@ function start(name,key_name){
 
 function history(){
 
-    //リセット
-    historys.innerHTML = "";
+
+    if((Alldata_list?.How_to_use ?? false) === false ){
+        //使い方等
+        //【将来的なメモ】この方式だと、後々の拡張機能や保守性がないのかもしれない…
+
+        const set_html1 = `
+                <div class="history--box">
+                    <div class="first_time">
+                        <div class="first_time__info">
+                            <p>はじめてですか？</p>
+                            <p>まずは使い方を見てみましょう！！</p>
+                        </div>
+                        <div class="first_time__button">
+                            <button id="first_time">使い方</button>
+                            <button id="skip">スキップ</button>
+                        </div>
+                    </div>
+                </div>`;
+
+        historys.innerHTML = set_html1;
+
+    }else{
+        //リセット
+        historys.innerHTML = "";
+    }
+
+
 
     //件数表示
     text_load.textContent = (`${Key_Number}件`);
 
     for(let i = 0;Key_Number > i;i++){
-        
         const j = (i + 1)
 
         const stress = JSON.parse(localStorage.getItem(`${key_name}${j}`))
