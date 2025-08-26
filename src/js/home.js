@@ -22,6 +22,8 @@ const key_name =("KEY_TH")  //子のキーの名前
 const storedRaw = JSON.parse(localStorage.getItem(Storage_Key))
 const Alldata_lists = storedRaw ? storedRaw : null;
 
+let How_to_use_ft=(Alldata_lists?.How_to_use ?? false)
+
 let Alldata_lista;
 if (Alldata_lists === null) {
     save(0);
@@ -32,6 +34,7 @@ if (Alldata_lists === null) {
 }
 
 const Alldata_list = Alldata_lista;
+
 console.log(Alldata_list)
 
 
@@ -92,6 +95,9 @@ bu_relode.addEventListener("click", () => {
     attachHistoryButtons(); 
 });
 
+
+
+
 //保存的
 function save(KeyNumber){
 
@@ -100,8 +106,8 @@ function save(KeyNumber){
             version:version,
             key_name:key_name,
             AllData_Number:KeyNumber,
-            How_to_use:false,
-        };
+            How_to_use:How_to_use_ft ? How_to_use_ft : false,
+            };
 
         localStorage.setItem(Storage_Key,JSON.stringify(data_list));
 }
@@ -137,20 +143,20 @@ function history(){
         //【将来的なメモ】この方式だと、後々の拡張機能や保守性がないのかもしれない…
 
         const set_html1 = `
-                <div class="history--box">
+                <div class="history--box" id="farst">
                     <div class="first_time">
                         <div class="first_time__info">
                             <p>はじめてですか？</p>
                             <p>まずは使い方を見てみましょう！！</p>
                         </div>
                         <div class="first_time__button">
-                            <button id="first_time">使い方</button>
+                            <a id="first_time" href="./info.html">使い方</a>
                             <button id="skip">スキップ</button>
                         </div>
                     </div>
                 </div>`;
 
-        historys.innerHTML = set_html1;
+        historys.innerHTML += set_html1;
 
     }else{
         //リセット
@@ -187,8 +193,8 @@ function history(){
 
 
 
-    //バーの色を変える。
-    const bar = `linear-gradient(to right, var(--bu-answer-color) ${correc-(interference)}%, var(--bu-error-color) ${correc+(interference)}%)`;
+        //バーの色を変える。
+        const bar = `linear-gradient(to right, var(--bu-answer-color) ${correc-(interference)}%, var(--bu-error-color) ${correc+(interference)}%)`;
 
 
         //設定
@@ -275,6 +281,21 @@ function history(){
         }
     };
 };
+
+
+const bu_skip = document.getElementById("skip")
+const farst = document.getElementById("farst")
+if(bu_skip){
+    bu_skip.addEventListener("click",()=>{
+        How_to_use_ft = true
+        save(Key_Number)
+        farst.style.display="none";
+    })
+}
+
+
+
+
 
 
 // formatEpochJPはAIが作成。

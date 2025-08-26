@@ -73,8 +73,9 @@ header nav{
     backdrop-filter: var(--fil-bg);
     position: relative;
     display: flex;
+    flex-flow: column;
     justify-content: center;
-    align-items: center;
+    gap: 15px;
     transform: translateX(0%);
     opacity: 1;
     margin: auto;

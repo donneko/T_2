@@ -21,6 +21,8 @@
 
             --info-text-color:#5e5e5e;
 
+            --load-bar-color:#a7a7a7;
+
             --boder-box:#000000;
 
             --bu-boder-radius:5px;
@@ -38,6 +40,7 @@
             --fil-bg:blur(4px);
 
             --max-width:1024px;
+            --load-bar-fill-color:#42424250;
 
             --input-color:#ffffff;
         }
@@ -56,6 +59,9 @@
             --text-color:#e2e2e2;
             --bu-first_time:var(--bg-answer-correct);
             --text-color-first_time:var(--text-color);
+            --load-bar-color:#646464;
+            --load-bar-fill-color:#0000004b;
+
 
         }
 
@@ -79,7 +85,7 @@
             font-size:clamp( 12px, 1.3vw, 22px);
             color: var(--text-color);
         }
-        button{
+        button,a{
             background-color: var(--bg-bu-color);
             font-size: 1.2em;
             padding: 5px 15px;
@@ -346,7 +352,7 @@
         }
         .first_time__info p:nth-child(2){
             margin-top: 20px;
-            font-size: 0.6em;
+            font-size: 0.5em;
         }
         .first_time__button {
             height: auto;
@@ -355,7 +361,8 @@
             padding: 10px 5px;
             
         }
-        .first_time__button button{
+        .first_time__button button,
+        .first_time__button a{
             display: block;
             width:7em;
             height: 2em;
@@ -378,6 +385,93 @@
         }
         #skip:hover{
             background-color: var(--bg-answer-correct);        
+        }
+        /* ここまで【初めてですか？】 */
+        /* ここから【ロード画面】 */
+        
+        .road span{
+            background:linear-gradient(to right,var(--load-bar-color) 40%,#c6c6c6 50%,var(--load-bar-color) 60%);
+            background-position: 0% 0px;
+            background-size: 500% 500%;
+            animation: con 2s linear infinite;
+            box-shadow: 1px 1px 5px #00000070;
+            display: block;
+            border-radius: 20px; 
+        }
+        .road .history--date span{
+            width: 10em;
+            height: 2em;
+            margin: auto;
+        }
+        .road .history__title--bu{
+
+            width: calc((1.2em * 6) + 10px);
+            height: calc(1.2em + 30px);
+            background:linear-gradient(to right,var(--load-bar-color) 40%,#c6c6c6 50%,var(--load-bar-color) 60%);
+            background-position: 0% 0px;
+            background-size: 500% 500%;
+            animation: con 2s linear infinite;
+            box-shadow: 1px 1px 5px #00000070;
+            display: block;
+            border-radius: 10px;
+            border: 0px;
+        }
+        .road .history--h3{
+            width: calc(4em * 6);
+            height: calc(4em * 1);
+            position: relative;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            border-radius: 10px;
+        }
+        .road .ratio__info span{
+            width: 5em;
+            height: 1em;
+            border-radius: 10px;
+            margin-top: 15px;
+        }
+        .road.history--box:nth-child(1) {
+            border-top: var(--history--boder-color) 1px solid;
+        }
+        .road.history--box{
+            position: relative;
+        }
+        #road--title{
+            position: absolute;
+            width: calc(100% - (10px * 2));
+            height: calc(100% - (10px * 2));
+            z-index: 100;
+            border-radius: 5px;
+            background: var(--load-bar-fill-color);
+            backdrop-filter:blur(2px);
+        }
+        #road--title::after{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            content: "ロード中";
+            transform: translate(-50%,-50%);
+            color: var(--text-color-first_time);
+            font-size: 5em;
+            width: 100%;
+        }
+
+        .history--footer{
+            height: 2em;
+            color: var(--info-text-color);
+        }
+
+
+
+        @keyframes con {
+            0%{
+                background-position: 0% 0px;
+            }
+            100%{
+                background-position: 100% 0px;
+
+            }
         }
 
 
@@ -457,6 +551,20 @@
                 margin: 0.2em 0;
 
             }
+
+            .road .history--h3 {
+                top: 25%;
+            }
+            .road .history__title--bu {
+                width: calc((1.2em * 15) + 10px);
+                margin: auto;
+            }
+            .first_time__info {
+                font-size: 2.5em;
+            }
+        #road--title::after{
+            font-size: 3em;
+        }
         }   
         @media screen and (max-width:425px) {
             .history__title h3 {
@@ -486,6 +594,23 @@
                 background-color: var(--bg-main);
                 padding: 80px 15px;
                 box-sizing: border-box;
+            }
+
+            .first_time__button {
+                padding: 15px 5px;
+            }
+            .first_time__button button,
+            .first_time__button a {
+                width: 6em;
+                height: 2em;
+                font-size: 2em;
+                padding: auto 0px;
+            }
+            .road .history--h3 {
+                width: calc(4em * 5);
+            }
+            .road .ratio__info span {
+                width: 4em;
             }
 }
 
