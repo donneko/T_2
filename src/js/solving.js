@@ -1,8 +1,8 @@
         //  ここからボタン取得
-        const eend = document.getElementById("end")
-        const returnn = document.getElementById("return")
-        const answer = document.getElementById("answer")
-        const next = document.getElementById("next")
+        const endButton = document.getElementById("end")
+        const prevButton = document.getElementById("return")
+        const answerButton = document.getElementById("answer")
+        const nextButton = document.getElementById("next")
 
         //  ここから表示メッセージなどの取得
         const title = document.getElementById("title")
@@ -26,7 +26,7 @@ const data_queryy = data.request;
 const data_key = data.key_name;
 const [data_list,data_list2,data_query] = data_set(data_key,data_queryy);
 ui_set(data_list,won_type,twe_type)
-updata(data_list,query_th);
+updateUI(data_list,query_th);
 
 
 
@@ -35,7 +35,7 @@ updata(data_list,query_th);
 
     // 初期設定（リストにデータを入れる）
     function ui_set(setting,won_type,twe_type){
-        document.title=(`${won_type}・${twe_type}`)
+        document.title=(`${won_type}|${twe_type}`)
         title.textContent=(`${won_type}・${twe_type}`)
 
         for(let i = 0; i < setting.Problem_Content.length;i++){
@@ -133,13 +133,13 @@ function data_set(key,queryy){
 
     };
 
-function updata(data,query){
+function updateUI(data,query){
 
     const th = (data.Problem_Content.length);
     const que = (query - 1);
     //テキスト変更
 
-    nu.textContent = (`${th}/${query}`)
+    nu.textContent = (`${query}/${th}`)
     problem.textContent = (`${data.Problem_Content[que]}=`);
     user_input.value =(`${data.User_Answers[que]}`)
 
@@ -173,29 +173,29 @@ function updata(data,query){
 
     //ボタンを変える処理
     if(!((que +1)< th)){
-        updata_button(1,true);
+        updateButtonState(1,true);
     }else{
-        updata_button(1,false);
+        updateButtonState(1,false);
     }
     if(!((que)> 0)){
-        updata_button(2,true);
+        updateButtonState(2,true);
     }else{
-        updata_button(2,false);
+        updateButtonState(2,false);
     }
     //回答部の最新を取得
-    anser_button();
+    updateAnswerButton();
 
 };
-//隣のやつがうざい、まじでツンツンしないでほしい、きもすぎやろ(笑)
-//コメ
 
-function updata_button(af,at){
+
+//ボタンの表示変更
+function updateButtonState(af,at){
 console.log(`【デバッグ--ボタン】af:${af},at:${at};`)
-const ans_style = (answer.style);
-const nex_style = (next.style);
-const ret_style = (returnn.style)
+const ans_style = (answerButton.style);
+const nex_style = (nextButton.style);
+const ret_style = (prevButton.style)
 
-    answer.disabled = true;
+    answerButton.disabled = true;
     ans_style.color = ("var(--bu-invalid-color)");
     ans_style.borderColor = ("var(--bu-invalid-color)");
 
@@ -205,42 +205,42 @@ const ret_style = (returnn.style)
         nex_style.color = ("var(--bu-end-color)");
         nex_style.borderColor = ("var(--bu-end-color)");
         nex_style.backgroundColor = ("var(--bg-bu-color)");
-        next.textContent ="終了";
+        nextButton.textContent ="終了";
 
     }else if(af === 1){
     nex_style.color = ("var(--text-color-next)");
     nex_style.borderColor = ("var(--bu-next-color)");
     nex_style.backgroundColor = ("var(--bu-next-color)");
-    next.textContent = "次へ";
+    nextButton.textContent = "次へ";
     };
     if(at === true && af === 2){
         ret_style.color = ("var(--bu-invalid-color)");
         ret_style.borderColor = ("var(--bu-invalid-color)");
-        returnn.disabled = true;
+        prevButton.disabled = true;
 
     }else if(af === 2){
     ret_style.color = ("var(--text-color-main)");
     ret_style.borderColor = ("var(--bu-next-color)");
-    returnn.disabled =false;
+    prevButton.disabled =false;
 
     };
 };
-function anser_button(){
+function updateAnswerButton(){
 
         console.log(`【デバッグ--アンサーボタン】ユーザーの入力値:${(user_input_value[(query_th -1 )])},選択サれている番号:${(query_th -1 )};`)
         if(((user_input_value[(query_th -1 )]) === null) || (((user_input_value[(query_th -1 )]) === ""))){
-            answer.style.color = ("var(--bu-invalid-color)");
-            answer.style.borderColor = ("var(--bu-invalid-color)");
-            answer.disabled = true;
+            answerButton.style.color = ("var(--bu-invalid-color)");
+            answerButton.style.borderColor = ("var(--bu-invalid-color)");
+            answerButton.disabled = true;
         }else{
-            answer.style.color = ("var(--bu-answer-color)");
-            answer.style.borderColor = ("var(--bu-answer-color)");
-            answer.disabled = false;
+            answerButton.style.color = ("var(--bu-answer-color)");
+            answerButton.style.borderColor = ("var(--bu-answer-color)");
+            answerButton.disabled = false;
         };
 }
 
 //ユーザの回答付きにする。
-function anser(user,th){
+function checkAnswer(user,th){
 
         //↓ここで表示をユーザーの回答付きにする。
         problem.textContent = (`${data_list.Problem_Content[(th)]}=${user}`);
@@ -322,16 +322,16 @@ function anser(user,th){
 
 //キーによるイベント
 //終了
-eend.addEventListener("click",() =>{
+endButton.addEventListener("click",() =>{
             end();
 })
 
 //次
-next.addEventListener('click',() => {
+nextButton.addEventListener('click',() => {
 
         if((query_th +1) <= data_list.Problem_Content.length){
             query_th++;
-            updata(data_list,query_th);
+            updateUI(data_list,query_th);
         }else{
             //end();
             end();
@@ -339,10 +339,10 @@ next.addEventListener('click',() => {
 });
 
     //戻る
-returnn.addEventListener('click',() => {
+prevButton.addEventListener('click',() => {
         if((query_th)> 0){
             query_th--;
-            updata(data_list,query_th);
+            updateUI(data_list,query_th);
         }
 });
 
@@ -350,19 +350,19 @@ returnn.addEventListener('click',() => {
 user_input.addEventListener("input",() => {
     user_input_value.splice((query_th -1 ),1,user_input.value)
     console.log(`【デバッグ--ボタン】:${user_input_value}:${user_input_value[(query_th -1 )]}:${(query_th -1 )}`);
-    anser_button();
+    updateAnswerButton();
 });
 
         //回答確認
-answer.addEventListener('click',() => {
+answerButton.addEventListener('click',() => {
         if(user_input.value !== ""){
-            anser(Number(user_input_value[(query_th -1 )]),(query_th -1 ));
+            checkAnswer(Number(user_input_value[(query_th -1 )]),(query_th -1 ));
         };
 });
 //エンターキーで回答確認
 user_input.addEventListener("keydown",(event) =>{
         if(event.key === "Enter" && user_input_value[(query_th -1 )] !== ""){
-            anser(Number(user_input_value[(query_th -1 )]),(query_th -1 ));
+            checkAnswer(Number(user_input_value[(query_th -1 )]),(query_th -1 ));
         }
 });
 

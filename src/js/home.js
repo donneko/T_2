@@ -15,34 +15,34 @@ const bu_detail = document.querySelectorAll(".detail")
 //変更NOW
 const text_load = document.getElementById("text-loads");
 
-const version = ("1") //データの互換性をバージョンによって変わるかもなので、バージョン管理
-const Storage_Key = ("KEY-MAIN")    //メインのストレージのキー
-const key_name =("KEY_TH")  //子のキーの名前
+const VERSION = ("1") //データの互換性をバージョンによって変わるかもなので、バージョン管理
+const ALL_DATA_KEY = ("KEY-MAIN")    //メインのストレージのキー
+const CHILD_KEY_PREFIX =("KEY_TH")  //子のキーの名前
 
-const storedRaw = JSON.parse(localStorage.getItem(Storage_Key))
-const Alldata_lists = storedRaw ? storedRaw : null;
+const storedAllDataRaw = JSON.parse(localStorage.getItem(ALL_DATA_KEY))
+const storedAllData = storedAllDataRaw ? storedAllDataRaw : null;
 
-let How_to_use_ft=(Alldata_lists?.How_to_use ?? false)
+let hasSeenHowTo=(storedAllData?.How_to_use ?? false)
 
-let Alldata_lista;
-if (Alldata_lists === null) {
-    save(0);
-    const storedRaw = JSON.parse(localStorage.getItem(Storage_Key));
-    Alldata_lista = storedRaw ? storedRaw : null;
+let allDataWorking;
+if (storedAllData === null) {
+    saveAllData(0);
+    const allDataFromStorage = (JSON.parse(localStorage.getItem(ALL_DATA_KEY)));
+    allDataWorking = allDataFromStorage ? allDataFromStorage : null;
 } else {
-    Alldata_lista = Alldata_lists;
+    allDataWorking = storedAllData;
 }
 
-const Alldata_list = Alldata_lista;
+const allData = allDataWorking;
 
-console.log(Alldata_list)
+console.log(allData)
 
 
-let Key_Number = (Alldata_list?.AllData_Number ?? 0);
-console.log(Key_Number)
+let entryCount = (allData?.AllData_Number ?? 0);
+console.log(entryCount)
 
 //初期
-history();
+renderHistory();
 attachHistoryButtons();
 
 //-------------------
@@ -50,7 +50,7 @@ attachHistoryButtons();
 //クリックイベント
 bu_start.addEventListener("click",()=>{
 
-    if( 0===(val_min.value)*(val_max.value)*(val_nal.value)){
+    if( Number(val_min.value) === 0 || Number(val_max.value) === 0 || Number(val_nal.value) === 0){
         
         val_min.placeholder="0または空白は使用できません。";
         val_max.placeholder="0または空白は使用できません。";
@@ -76,9 +76,9 @@ bu_start.addEventListener("click",()=>{
         
         
         if(Number(val_nal.value) > 0){
-            Key_Number++
-            start(Key_Number,key_name)
-            save(Key_Number)
+            entryCount++
+            navigateToGenerate(entryCount,CHILD_KEY_PREFIX)
+            saveAllData(entryCount)
         }else{
             val_nal.placeholder="1以上の数値が必要";
             val_nal.style.setProperty("--input-pl-color","#da0303")
@@ -90,7 +90,7 @@ bu_start.addEventListener("click",()=>{
 
 });
 bu_reload.addEventListener("click", () => {
-    history();
+    renderHistory();
     attachHistoryButtons(); 
 });
 
@@ -98,23 +98,23 @@ bu_reload.addEventListener("click", () => {
 
 
 //保存的
-function save(KeyNumber){
+function saveAllData(KeyNumber){
 
 
         const data_list = {
-            version:version,
-            key_name:key_name,
+            VERSION:VERSION,
+            CHILD_KEY_PREFIX:CHILD_KEY_PREFIX,
             AllData_Number:KeyNumber,
-            How_to_use:How_to_use_ft ? How_to_use_ft : false,
+            How_to_use:hasSeenHowTo ? hasSeenHowTo : false,
             };
 
-        localStorage.setItem(Storage_Key,JSON.stringify(data_list));
+        localStorage.setItem(ALL_DATA_KEY,JSON.stringify(data_list));
 }
 
 
 
     //始まる処理
-function start(name,key_name){
+function navigateToGenerate(name,CHILD_KEY_PREFIX){
     const min = val_min.value;
     const max = val_max.value;
     const query = val_nal.value;
@@ -124,7 +124,7 @@ function start(name,key_name){
         max:max,
         query:query,
         Key_Number:name,
-        Key_name:key_name,
+        Key_name:CHILD_KEY_PREFIX,
     };
 
     const send_url = new URLSearchParams(send).toString();
@@ -134,12 +134,12 @@ function start(name,key_name){
 }
 
 
-function history(){
+function renderHistory(){
 
     //リセット
     historys.innerHTML = "";
 
-    if((How_to_use_ft) === false ){
+    if((hasSeenHowTo) === false ){
         //使い方等
         //【将来的なメモ】この方式だと、後々の拡張機能や保守性がないのかもしれない…
 
@@ -151,7 +151,7 @@ function history(){
                             <p>まずは使い方を見てみましょう！！</p>
                         </div>
                         <div class="first_time__button">
-                            <a id="first_time" href="./info.html">使い方</a>
+                            <a id="first_time" href="./site/info.html">使い方</a>
                             <button id="skip">スキップ</button>
                         </div>
                     </div>
@@ -163,35 +163,37 @@ function history(){
 
 
     //件数表示
-    text_load.textContent = (`${Key_Number}件`);
+    text_load.textContent = (`${entryCount}件`);
 
-    for(let i = 0;Key_Number > i;i++){
+    for(let i = 0;entryCount > i;i++){
         const j = (i + 1)
 
-        const stress = JSON.parse(localStorage.getItem(`${key_name}${j}`))
-        const Problem_stress = stress ?? null;
-        if(Problem_stress !== null){
-        console.log(Problem_stress)
+        const entryData = JSON.parse(localStorage.getItem(`${CHILD_KEY_PREFIX}${j}`))
+        const problemEntry = entryData ?? null;
+        if(problemEntry !== null){
+        console.log(problemEntry)
 
-        const correct = Problem_stress?.correct_rate ?? null;
-        console.log(correct)
+        const correctRate = problemEntry?.correct_rate ?? null;
+        console.log(correctRate)
 
-        const error = (100 - correct).toFixed(1);
-        const miss = Math.ceil(Number(error))
-        const correc = Math.ceil(Number(correct))
+        const missRateRaw = (100 - correctRate).toFixed(1);
+        const missRate = Math.ceil(Number(missRateRaw))
+        const correctRateRounded = Math.ceil(Number(correctRate))
+        
+        let createdAtJP ="データなし";
+        if(problemEntry.date ?? null ==! null){
+            createdAtJP =formatEpochJP(problemEntry.date);
+        }
 
-        const utcDate =formatEpochJP(Problem_stress.date ?? null);
-        console.log(formatEpochJP(Problem_stress.date));
-
-        console.log(`${miss}:${correc}`)
+        console.log(`${missRate}:${correctRateRounded}`)
 
         const interference_set = 10;  //ラインをどれぐらいにじませるかの値
-        const interference = ((interference_set/2) * (1-(Math.abs((correct/100)-(miss/100)))));
+        const interference = ((interference_set/2) * (1-(Math.abs((correctRate/100)-(missRate/100)))));
 
 
 
         //バーの色を変える。
-        const bar = `linear-gradient(to right, var(--bu-answer-color) ${correc-(interference)}%, var(--bu-error-color) ${correc+(interference)}%)`;
+        const bar = `linear-gradient(to right, var(--bu-answer-color) ${correctRateRounded-(interference)}%, var(--bu-error-color) ${correctRateRounded+(interference)}%)`;
 
 
         //設定
@@ -204,7 +206,7 @@ function history(){
         let font_size;
 
         //名前の取得
-        const name = Problem_stress?.name ?? null;
+        const name = problemEntry?.name ?? null;
         if(name !== null){
             history_name = name;
             color = "var(--text-color-main)";
@@ -217,22 +219,22 @@ function history(){
 
 
         //ここでパーセンの表示
-        if(correc === 0){
-            Miss_Rate_text = (`ミス率:${error}%`)
+        if(correctRateRounded === 0){
+            Miss_Rate_text = (`ミス率:${missRateRaw}%`)
             Correct_Rate_display = "none";
-            console.log(`${error}`)
-        }else if(miss === 0){
+            console.log(`${missRateRaw}`)
+        }else if(missRate === 0){
             Miss_Rate_display = "none";
-            Correct_Rate_text = (`正答率:${correct}%`)
-            console.log(`正答率を表示${correct}`)
+            Correct_Rate_text = (`正答率:${correctRate}%`)
+            console.log(`正答率を表示${correctRate}`)
         }else{
              //エラー（例外）処理 NULLとか
-            Correct_Rate_text = (`正答率:${correct}%`)
-            Miss_Rate_text = (`ミス率:${error}%`)
+            Correct_Rate_text = (`正答率:${correctRate}%`)
+            Miss_Rate_text = (`ミス率:${missRateRaw}%`)
             console.log("ゼロではない")
         };
 
-        if((correct === null)||(correct === "NaN")){
+        if((correctRate === null)||(Number.isNaN(correctRate))){
             Miss_Rate_text = "【エラー！】データがありません。";
             console.log(`エラー、データがnullまたはnanです。`)
             Correct_Bar_display = "none";
@@ -244,7 +246,7 @@ function history(){
         const AddHtml =(`
                 <div class="history--box">
                     <div class="history--date">
-                        <p>${utcDate}</p>
+                        <p>${createdAtJP}</p>
                     </div>
                         <div>
                             <div class="history__title">
@@ -272,8 +274,8 @@ function history(){
 
         }else{
             console.log("【エラー】致命的なエラーが発生！！データを消去しないと行けないかも…。大丈夫！自動で解消されるよ！！")
-            const index = (Key_Number -1)
-            save(index)
+            const index = (entryCount -1)
+            saveAllData(index)
             window.location.reload();
         }
     };
@@ -284,8 +286,8 @@ const bu_skip = document.getElementById("skip")
 const farst = document.getElementById("farst")
 if(bu_skip){
     bu_skip.addEventListener("click",()=>{
-        How_to_use_ft = true
-        save(Key_Number)
+        hasSeenHowTo = true
+        saveAllData(entryCount)
         farst.style.display="none";
     })
 }
@@ -294,7 +296,7 @@ if(bu_skip){
 
 
 
-
+// AIがさくせい、ここから
 // formatEpochJPはAIが作成。
 function formatEpochJP(epoch, tz = 'Asia/Tokyo') {
     
@@ -325,6 +327,8 @@ function formatEpochJP(epoch, tz = 'Asia/Tokyo') {
     return `${map.year}年${map.month}月${map.day}日`
         + `${map.hour}時${map.minute}分`;
 }
+
+
 //attachHistoryButtonsはAI作成。
 function attachHistoryButtons(){
     const bu_resolve = document.querySelectorAll(".resolve");
@@ -334,7 +338,7 @@ function attachHistoryButtons(){
         btn.addEventListener("click", e => {
         const index = e.currentTarget.dataset.index;
         window.location.href =
-            "solving.html?" + new URLSearchParams({ key_name:`${key_name}${index}`, request:"All" });
+            "solving.html?" + new URLSearchParams({ key_name:`${CHILD_KEY_PREFIX}${index}`, request:"All" });
         });
     });
 
@@ -342,7 +346,8 @@ function attachHistoryButtons(){
         btn.addEventListener("click", e => {
         const index = e.currentTarget.dataset.index;
         window.location.href =
-            "confirm.html?" + new URLSearchParams({ key_name:`${key_name}${index}` });
+            "confirm.html?" + new URLSearchParams({ key_name:`${CHILD_KEY_PREFIX}${index}` });
         });
     });
 }
+//ここまで。

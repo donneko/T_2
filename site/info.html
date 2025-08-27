@@ -3,14 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>数学|詳細画面</title>
+    <title>使い方について</title>
     
     <!-- CSSとJavaScriptのロード -->
-    <link rel="stylesheet" href="./src/css/confirm.css">
-    <link rel="stylesheet" href="./src/common/css/header.css">
-    <script src="./src/common/js/color-mode.js" defer></script>
-    <script src="./src/common/js/header.js" defer></script>
-    <script src="./src/js/confirm.js" defer></script>
+    <link rel="stylesheet" href="./css/info.css">
+    <link rel="stylesheet" href="../src/common/css/header.css">
+    <script src="../src/common/js/color-mode.js" defer></script>
+    <script src="../src/common/js/header.js" defer></script>
 
     <!-- フォントのロード -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -20,8 +19,8 @@
 </head>
 <body id="color-mode" class="mode--dark">
     <header class="Close" id="header">
-        <button id="end" type="button">ホームに戻る</button>
-        <h1 id="title">詳細画面</h1>
+        <a id="home" href="../index.html">ホームに戻る</a>
+        <h1 id="title">使い方</h1>
         <div class="header-info--box">
             <button id="menu" type="button" aria-label="メニューを表示する" aria-expanded="false">
                 <span></span>
@@ -36,33 +35,30 @@
     </header>
     
     <main id="top">
-        <!-- パーセント部分 -->
-        <section class="ratio">
-            <div class="ratio--box">
-                <div class="ratio__ratios">
-                    <span id="Correct-Bar"></span>
-                </div>
-                <div class="ratio__info">
-                    <p id="Correct-Rate">正答率：50%</p>
-                    <p id="Miss-Rate">ミス率：50%</p>
-                </div>
+        <section class="info--body">
+            <h2>はじめに</h2>
+            <div class="info--text">
+                <p>この使い方は画像での説明になります。<br>画像のサイズによってはロードされない場合があります。</p>
+                <p><span>画像が小さい場合</span>は頑張って見て下さい。</p>
             </div>
         </section>
-
-        <!-- リンク（ボタン）部分-->
-        <nav>
-            <button id="BackToHome" type="button">ホームに戻る</button>
-            <button id="ViewTheIssue" type="button">問題内容を見る</button>
-        </nav>
-
-        <!-- 回答内容（JSで作成） -->
-        <section class="answer" id="history">
+        <section class="explanation--body">
+            <div class="explanation--box">
+                <div class="explanation--title">
+                    <h3>ホーム画面の操作方法</h3>
+                </div>
+                <div class="explanation--image"></div>
+            </div>
+            <div class="explanation--box">
+                <div class="explanation--title">
+                    <h3>ホーム画面の操作方法</h3>
+                </div>
+                <div class="explanation--image"></div>
+            </div>
         </section>
-
     </main>
     <footer id="top-link">
         <a href="#top"></a>
     </footer>
-
 </body>
 </html>

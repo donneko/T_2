@@ -1,4 +1,8 @@
-        //  ここからボタン取得
+//！！ テストコード！！
+//絶対に本実装はしないように
+
+
+//  ここからボタン取得
         const eend = document.getElementById("end")
         const returnn = document.getElementById("return")
         const answer = document.getElementById("answer")

@@ -1,0 +1,224 @@
+        :root{
+            --bg-body:#ffffff;
+            --bg-main:#f2f2f2;
+            --bg-bu-color:#ffffff00;
+            --bg-header:#ffffffae;
+
+            --bu-home-color:#F8B500;
+
+            --text-color:#424242;
+            --text-bg-color:#bcbcbc;
+
+            --bu-border-radius:5px;
+            --bu-border-thick:5px;
+
+            --nav-color:#707070;
+            
+            --border-ratio:10px;
+            --text-bg-border-ratio:5px;
+
+            --shadow-size:5px;
+            --shadow-color:#000000b0;
+
+        }
+        /* ダークモード切り替え */
+        body.mode--dark {
+            --bg-body: #606060;
+            --bg-main: #323232;
+            --bg-bu-color: #ffffff00;
+            --bg-header: #3f3f3fae;
+            --info-text-color: #969696;
+            --nav-color: #dddddd;
+            --text-color:#e2e2e2;
+            --text-bg-color:#373737;
+
+        }
+
+        /* ベース */
+        *{
+            box-sizing: border-box;
+        }
+        html{
+            scroll-behavior: smooth;
+        }
+        body{
+            padding: 0;
+            margin: 0;
+            width: 100%;
+            min-height: 100dvh;
+            text-align: center;
+            font-size:clamp( 12px, 1.3vw, 22px);
+            color: var(--text-color);
+            background-color: var(--bg-main);
+
+            /* フォントの設定 */
+            font-family: "M PLUS 1p", sans-serif;
+            font-weight: 700;
+            font-style: normal;
+        }
+        h2,h3{
+            margin: 0;
+        }
+
+        /* ベースここまで */
+
+        /*ヘッダーは別ファイルから読み込む 
+        差分をここに記述 */
+        #home{
+            border: var(--bu-home-color) var(--bu-border-thick) solid;
+            border-radius: var(--bu-border-radius);
+            text-align: center;
+            color: var(--bu-home-color);
+            position: absolute;
+            top: 50%;
+            left: 30px;
+            transform: translateY(-50%);
+            background-color: var(--bg-bu-color);
+            font-size: 1.2em;
+            padding: 5px 15px;
+            cursor:pointer;
+            text-decoration:inherit;
+            filter: grayscale(0%);
+            box-shadow: 0px 0px 0px var(--shadow-color);
+            transition: filter 0.2s ease, box-shadow 0.2s ease;
+        }
+        #home:hover{
+            box-shadow: 0px 0px var(--shadow-size) var(--shadow-color);
+            filter: grayscale(90%);
+        }
+
+        /* ここからメインコンテンツ */
+        main{
+            width: auto;
+            min-height: auto;
+            height: auto;
+            background-color: var(--bg-main);
+            padding: 100px 50px;
+            box-sizing: border-box;
+        }
+
+        /* はじめにのセクション */
+        .info--body{
+            width: 100%;
+            height: auto;
+            margin: auto;
+            padding: 20px 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px var(--shadow-size) var(--shadow-color);
+            background-color: var(--bg-body);
+        }
+        .info--body h2{
+            font-size: 6em;
+        }
+        .info--text{
+            font-size: 2em;
+        }
+        .info--text span{
+            background-color: var(--text-bg-color);
+            padding: 0.1em 0.3em;
+            border-radius: var(--text-bg-border-ratio);
+        }
+
+        /* 説明のセクション */
+        .explanation--body{
+            width: 100%;
+            height: auto;
+            margin: auto;
+            margin-top:100px ;
+        }
+        .explanation--box{
+            margin-top: 50px;
+            width: 100%;
+            height: auto;
+            padding: 20px 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px var(--shadow-size) var(--shadow-color);
+            background-color: var(--bg-body);
+        }
+        .explanation--title{
+            font-size: 2em;
+        }
+        .explanation--image{
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            background-image: url(../img/info_1.png);
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            border-radius: var(--border-ratio);
+            overflow: hidden; 
+        }
+
+
+        /* ここからページ上に戻るボタン */
+        :root{
+            --top-link:50px
+        }
+        #top-link a{
+            display: block;
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: var(--top-link);
+            height: var(--top-link);
+            border: var(--nav-color) 2px solid;
+            border-radius: 30px;
+        }
+        #top-link a::after{
+            content: "";
+            position: absolute;
+            top: 60%;
+            left: 50%;
+            width: calc(var(--top-link) / 2);
+            height: calc(var(--top-link) / 2);
+            border: var(--nav-color) 3px solid;
+            border-bottom: 0px;
+            border-right: 0px;
+            transform: translate(-50%,-50%) rotate(45deg);
+            
+        }
+
+        @media screen and (max-width:700px) {
+            .info--body h2 {
+                font-size: 6em;
+            }
+            .info--body{
+                padding: 10px 10px;
+            }
+            .info--text {
+                font-size: 1.5em;
+            }
+            main{
+                padding: 100px 20px;
+            }
+            .explanation--box{
+                padding: 20px 10px;
+            }
+        }
+        @media screen and (max-width:425px) {
+            .info--body h2 {
+                font-size: 5em;
+            }
+            .info--body{
+                padding: 10px 10px;
+            }
+            .info--text {
+                font-size: 1em;
+            }
+            main{
+                padding: 100px 20px;
+            }
+            .explanation--title h3{
+                font-size: 1em;
+            }
+            .explanation--box{
+                padding: 20px 10px;
+            }
+            #home{
+                left: 10px;
+                padding: 5px 5px;
+            }
+            #title {
+                left: 55%;
+            }
+        }
