@@ -7,13 +7,13 @@ const historys = document.getElementById("history-body");
 
 //button
 const bu_start = document.getElementById("start");
-const bu_relode = document.getElementById("relode");
+const bu_reload = document.getElementById("reload");
 
 const bu_resolve = document.querySelectorAll(".resolve")
 const bu_detail = document.querySelectorAll(".detail")
 
 //変更NOW
-const text_load = document.getElementById("text-lodes");
+const text_load = document.getElementById("text-loads");
 
 const version = ("1") //データの互換性をバージョンによって変わるかもなので、バージョン管理
 const Storage_Key = ("KEY-MAIN")    //メインのストレージのキー
@@ -49,7 +49,6 @@ attachHistoryButtons();
 
 //クリックイベント
 bu_start.addEventListener("click",()=>{
-    console.log("これこれこれお"+(val_min.value)*(val_max.value)*(val_nal.value));
 
     if( 0===(val_min.value)*(val_max.value)*(val_nal.value)){
         
@@ -57,9 +56,9 @@ bu_start.addEventListener("click",()=>{
         val_max.placeholder="0または空白は使用できません。";
         val_nal.placeholder="0または空白は使用できません。";
 
-        val_min.style.setProperty("--inpot-pl-color","#da0303")
-        val_max.style.setProperty("--inpot-pl-color","#da0303")
-        val_nal.style.setProperty("--inpot-pl-color","#da0303")
+        val_min.style.setProperty("--input-pl-color","#da0303")
+        val_max.style.setProperty("--input-pl-color","#da0303")
+        val_nal.style.setProperty("--input-pl-color","#da0303")
 
         val_min.value="";
         val_max.value="";
@@ -71,18 +70,18 @@ bu_start.addEventListener("click",()=>{
         val_max.placeholder="数値を入力";
         val_nal.placeholder="数値を入力";
 
-        val_min.style.setProperty("--inpot-pl-color","#898989")
-        val_max.style.setProperty("--inpot-pl-color","#898989")
-        val_nal.style.setProperty("--inpot-pl-color","#898989")
+        val_min.style.setProperty("--input-pl-color","#898989")
+        val_max.style.setProperty("--input-pl-color","#898989")
+        val_nal.style.setProperty("--input-pl-color","#898989")
         
         
-        if(val_nal.value >!0){
+        if(Number(val_nal.value) > 0){
             Key_Number++
             start(Key_Number,key_name)
             save(Key_Number)
         }else{
             val_nal.placeholder="1以上の数値が必要";
-            val_nal.style.setProperty("--inpot-pl-color","#da0303")
+            val_nal.style.setProperty("--input-pl-color","#da0303")
 
             val_nal.value="";
         }
@@ -90,7 +89,7 @@ bu_start.addEventListener("click",()=>{
     }
 
 });
-bu_relode.addEventListener("click", () => {
+bu_reload.addEventListener("click", () => {
     history();
     attachHistoryButtons(); 
 });
@@ -137,8 +136,10 @@ function start(name,key_name){
 
 function history(){
 
+    //リセット
+    historys.innerHTML = "";
 
-    if((Alldata_list?.How_to_use ?? false) === false ){
+    if((How_to_use_ft) === false ){
         //使い方等
         //【将来的なメモ】この方式だと、後々の拡張機能や保守性がないのかもしれない…
 
@@ -158,11 +159,7 @@ function history(){
 
         historys.innerHTML += set_html1;
 
-    }else{
-        //リセット
-        historys.innerHTML = "";
     }
-
 
 
     //件数表示

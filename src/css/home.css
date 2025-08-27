@@ -14,44 +14,41 @@
             --text-color:#000000;
             --text-color-first_time:#464646;
 
-            --boder-input-color:#707070;
-            --text-color-input:#818181;
-
             --nav-color:#707070;
 
             --info-text-color:#5e5e5e;
 
             --load-bar-color:#a7a7a7;
 
-            --boder-box:#000000;
+            --bu-border-radius:5px;
+            --bu-border-thick:5px;
 
-            --bu-boder-radius:5px;
-            --bu-boder-thick:5px;
-
-            --boder-ratio:1px;
+            --input-border-radius:5px;
+            --input-border-thick:2px;
+            --input-border-color:#000000;
 
             --bu-invalid-color:#7d7d7db0;
             --bg-answer-correct:#dddddd;
 
-            --history--shadow-size:5px;
-            --history--shadow-color:#000000b0;
-            --history--boder-color:#737373;
+            --shadow-size:5px;
+            --shadow-color:#000000b0;
 
-            --fil-bg:blur(4px);
+            --history--border-color:#737373;
 
             --max-width:1024px;
             --load-bar-fill-color:#42424250;
 
             --input-color:#ffffff;
         }
-        html .mode--dark {
+
+        /* ダークモード切り替え */
+        body.mode--dark {
             --bg-body: #606060;
             --bg-main: #323232;
             --bg-bu-color: #ffffff00;
             --bg-header: #3f3f3fae;
-            --text-color-next: #ffffff;
             --text-color-main: #009cee;
-            --history--boder-color: #cfcfcf;
+            --history--border-color: #cfcfcf;
             --bg-answer-correct: #434343;
             --input-color:#3c3b3b;
             --bu-answer-color: #aaed0e;
@@ -61,29 +58,36 @@
             --text-color-first_time:var(--text-color);
             --load-bar-color:#646464;
             --load-bar-fill-color:#0000004b;
-
+            --input-border-color:#919191;
+            --nav-color: #dddddd;
 
         }
 
+        /* ベース */
+
         *{
-            /* フォントの設定 */
-            font-family: "M PLUS 1p", sans-serif;
-            font-weight: 700;
-            font-style: normal;
             box-sizing: border-box;
-            transition: all 0.3s ease;
         }
         html{
             scroll-behavior: smooth;
         }
+        a{
+            text-decoration:inherit;
+        }
         body{
             padding: 0;
             margin: 0;
-            width: 100vw;
-            height: 100vh;
+            width: 100%;
+            min-height: 100dvh;
             text-align: center;
             font-size:clamp( 12px, 1.3vw, 22px);
             color: var(--text-color);
+            background-color: var(--bg-main);
+
+            /* フォントの設定 */
+            font-family: "M PLUS 1p", sans-serif;
+            font-weight: 700;
+            font-style: normal;
         }
         button,a{
             background-color: var(--bg-bu-color);
@@ -91,41 +95,42 @@
             padding: 5px 15px;
             cursor:pointer;
             filter: grayscale(0%);
-            transition: all 0.5s ease;
+            box-shadow: 0px 0px 0px var(--shadow-color);
+            transition: filter 0.2s ease, box-shadow 0.2s ease;
         }
         button:hover{
+            box-shadow: 0px 0px var(--shadow-size) var(--shadow-color);
             filter: grayscale(90%);
         }
-        /* ヘッダー */
+        /* ベースここまで */
 
+        /* ヘッダーは別ファイルから読み込む */
 
-        /* メイン */
+        /* ここからメインコンテンツ */
         main{
-            width: 100vw;
+            width: auto;
             height: auto;
-            min-height: 100vh;
-            background-color: var(--bg-main);
             padding: 100px 50px;
+            background-color: var(--bg-main);
             box-sizing: border-box;
         }
+        /* 問題の設定をする場所 */
         .setting{
             width: 100%;
             height: auto;
             margin: auto;
             padding: 20px 20px;
             border-radius: 10px;
-            box-shadow: 0px 0px var(--history--shadow-size) var(--history--shadow-color);
+            box-shadow: 0px 0px var(--shadow-size) var(--shadow-color);
             background-color: var(--bg-body);
             max-width: var(--max-width);
-
-
         }
         .setting--box{
             display: flex;
             justify-content: space-around;
             margin-bottom: 50px;
-
         }
+        /* inputの部分 */
         .setting--input{
             display: flex;
             gap: 10px;
@@ -134,25 +139,30 @@
             margin-bottom: 10px;
             
         }
-        .setting--input p{
+        .setting--input label,
+        .setting--input span{
             margin: 10px 0px;
         }
-        .setting--input p:nth-child(1) {
-            width: 3em;
+        .setting--input label {
+            /* 文字の幅を共通にしたいので、3em */
+            width: 3em; 
         }
         .setting--input input{
             text-align: center;
             font-size: 0.5em;
-            border: #000000 2px solid;
-            border-radius: 5px;
+            border: var(--input-border-color) var(--input-border-thick) solid;
+            border-radius: var(--input-border-radius);
             background-color: var(--input-color);
+            color: var(--text-color);
         }
         .setting--input input::placeholder{
-            color: var(--inpot-pl-color,#898989);
+            color: var(--input-pl-color,#898989);
         }
+
+        /* はじめるボタン */
         .setting__start button{
-            border: var(--bu-answer-color) var(--bu-boder-thick) solid;
-            border-radius: var(--bu-boder-radius);
+            border: var(--bu-answer-color) var(--bu-border-thick) solid;
+            border-radius: var(--bu-border-radius);
             text-align: center;
             color: var(--bu-answer-color);
             font-size: 3em;
@@ -160,6 +170,7 @@
             padding-left: calc(2em + 0.5em);
             padding-right: 2em;
         }
+        /* 問題の設定をする場所ここまで */
 
         /* ここから履歴 */
         .history{
@@ -167,62 +178,62 @@
             height: auto;
             margin: auto;
             margin-top: 100px;
-            box-shadow: 0px 0px var(--history--shadow-size) var(--history--shadow-color);
+            box-shadow: 0px 0px var(--shadow-size) var(--shadow-color);
             border-radius: 10px;
             background-color: var(--bg-body);
             max-width: var(--max-width);
+        }
 
-
-            }
+        /* 履歴のヘッター部分 */
         .history--title{
             padding: 5px 1em;            
-            border-bottom: var(--history--boder-color) 2px solid;
+            border-bottom: var(--history--border-color) 2px solid;
             display: flex;
             justify-content: space-between;
             color: var(--info-text-color);
-
         }
         .history--title h2{
             margin: auto 0;
         }
-
         .history__title--box{
             display: flex;
             gap: 1em;
             padding: 5px 0;
         }
+        /* リロードボタン */
         .history__title--box button{
             width: 40px;
             height: 40px;
             margin: auto 0;
             border-radius: 50%;
-            border: var(--history--boder-color) 2px solid;
-            background-image: url(https://nano.donneko.net/x/x04/src/img/relod.svg);
+            border: var(--history--border-color) 2px solid;
+            background-image: url(../img/relod.svg);
             background-repeat: no-repeat;
             background-position: center;
             background-size: 80%;
             transform: rotate(0deg);
-            transition: all 0s;
-
+            transition: transform 0s;
         }
+
+        /* ボタン押下時に回転アニメーションを適用中
+        将来的にはJSと連動してリロード中だけ回転させる予定 */
         .history__title--box button:active{
             transform: rotate(360deg);
-            transition: all 0.5s;
-
+            transition: transform 0.5s;
         }
         .history__title--box p{
             margin: auto;
             font-size: 1.5em;
         }
 
-
+        /* ここから履歴表示部分 */
         /* ここから、【通常のデータ表示】 */
         .history--body{
             width: 100%;
         }
         .history--box{
             padding: 10px;
-            border-top: var(--history--boder-color) 1px solid;
+            border-top: var(--history--border-color) 1px solid;
         }
         .history--box:nth-child(1){
             border-top: 0px;
@@ -236,11 +247,12 @@
             margin: 0.2em 0;
             font-size: 1em;
         }
+        /* 正答率のバー表示部分 */
         .ratio{
             background-color: var(--bg-answer-correct);
             padding: 20px;
             border-radius: 5px;
-            box-shadow: 0px 0px var(--history--shadow-size) var(--history--shadow-color);
+            box-shadow: 0px 0px var(--shadow-size) var(--shadow-color);
         }
         .ratio--box{
             width: 100%;
@@ -254,10 +266,11 @@
             position: relative;
             border-radius: 20px;
             overflow: hidden;
-            box-shadow: 1px 1px 5px #00000070;
+            box-shadow: 1px 1px var(--shadow-size) var(--shadow-color);
+            transition: box-shadow 0.5s ease;
         }
         .ratio__ratios:hover{
-            box-shadow: 4px 4px 6px #00000070;
+            box-shadow: 4px 4px var(--shadow-size) var(--shadow-color);
         }
         .ratio__ratios span{
             position: relative;
@@ -265,7 +278,8 @@
             height: 100%;
             left: 0;
             display: block;
-            background: linear-gradient(to right, var(--bu-answer-color) 50%, var(--bu-error-color) 100%);
+            /* JSで変更されるが、一様 */
+            background: linear-gradient(to right, var(--bu-answer-color) 45%, var(--bu-error-color) 65%);
         
         }
         .ratio__info{
@@ -284,15 +298,12 @@
         .ratio__info p:nth-child(2){
             color: var(--bu-error-color);
         }
-
         .history__title{
             width: 100%;
             height: 10em;
             position: relative;
             
         }
-
-
         .history__title--bu{
             position: absolute;
             top: 50%;
@@ -313,14 +324,14 @@
             width: 100%;
         }
         .history__title--bu button:nth-child(1){
-            border: var(--bu-answer-color) var(--bu-boder-thick) solid;
-            border-radius: var(--bu-boder-radius);
+            border: var(--bu-answer-color) var(--bu-border-thick) solid;
+            border-radius: var(--bu-border-radius);
             text-align: center;
             color: var(--bu-answer-color);
         }
         .history__title--bu button:nth-child(2){
-            border: var(--text-color-main) var(--bu-boder-thick) solid;
-            border-radius: var(--bu-boder-radius);
+            border: var(--text-color-main) var(--bu-border-thick) solid;
+            border-radius: var(--bu-border-radius);
             text-align: center;
             color: var(--text-color-main);
         }
@@ -345,7 +356,7 @@
             font-size: 6em;
             padding: 10px;
             background-color: var(--bg-answer-correct);
-            box-shadow: 0px 0px var(--history--shadow-size) var(--history--shadow-color);
+            box-shadow: 0px 0px var(--shadow-size) var(--shadow-color);
         }
         .first_time__info p{
             margin: 0;
@@ -369,8 +380,7 @@
             border-radius: 10px;
             font-size: 2em;
             color: var(--text-color-first_time);
-            box-shadow: 0px 1px 3px var(--history--shadow-color);
-
+            box-shadow: 0px 1px 3px var(--shadow-color);
         }
         #first_time{
             background-color: var(--bg-answer-correct);        
@@ -382,6 +392,7 @@
         }
         #skip{
             border: var(--bg-answer-correct) 3px solid;
+            transition: background-color 0.5s ease;
         }
         #skip:hover{
             background-color: var(--bg-answer-correct);        
@@ -394,7 +405,7 @@
             background-position: 0% 0px;
             background-size: 500% 500%;
             animation: con 2s linear infinite;
-            box-shadow: 1px 1px 5px #00000070;
+            box-shadow: 1px 1px var(--shadow-size) var(--shadow-color);
             display: block;
             border-radius: 20px; 
         }
@@ -411,7 +422,7 @@
             background-position: 0% 0px;
             background-size: 500% 500%;
             animation: con 2s linear infinite;
-            box-shadow: 1px 1px 5px #00000070;
+            box-shadow: 1px 1px var(--shadow-size) var(--shadow-color);
             display: block;
             border-radius: 10px;
             border: 0px;
@@ -432,7 +443,7 @@
             margin-top: 15px;
         }
         .road.history--box:nth-child(1) {
-            border-top: var(--history--boder-color) 1px solid;
+            border-top: var(--history--border-color) 1px solid;
         }
         .road.history--box{
             position: relative;
@@ -457,13 +468,6 @@
             width: 100%;
         }
 
-        .history--footer{
-            height: 2em;
-            color: var(--info-text-color);
-        }
-
-
-
         @keyframes con {
             0%{
                 background-position: 0% 0px;
@@ -473,9 +477,21 @@
 
             }
         }
+        /* ここまで【ロード画面】 */
+        /* 履歴表示部分 */
 
+        /* ここから履歴のフッダー */
+        .history--footer{
+            height: 2em;
+            color: var(--info-text-color);
+            border-top: var(--history--border-color) 2px solid;
+        }
+        .history--footer p{
+            margin: 0;
+        }
+        /* ここまで履歴のフッダー */
 
-
+        /* ここからページ上に戻るボタン */
         :root{
             --top-link:50px
         }
@@ -500,12 +516,13 @@
             
             border-bottom: 0px;
             border-right: 0px;
-
             transform: translate(-50%,-50%) rotate(45deg);
             
         }
+        /* ここまでページ上に戻るボタン */
 
 
+        /* ここからレスポンシブ */
         @media screen and (max-width:705px) { 
             /*　画面サイズが480pxからはここを読み込む　*/
             .setting--box{
@@ -580,7 +597,8 @@
                 gap:0;
                 margin-bottom: 1.5em;
             }
-            .setting--input p {
+            .setting--input label,
+            .setting--input span{
                 margin: 0px;
             }
             .setting--input input {
@@ -588,9 +606,6 @@
             }
             main {
                 overflow: hidden;
-                width: 100vw;
-                height: auto;
-                min-height: 100vh;
                 background-color: var(--bg-main);
                 padding: 80px 15px;
                 box-sizing: border-box;

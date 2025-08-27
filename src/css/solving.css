@@ -8,59 +8,69 @@
             --bu-next-color:#007BBB;
             --bu-return-color:#007BBB;
             --bu-answer-color:#AACF53;
-            
+            --bu-invalid-color:#7d7d7db0; 
+
             --text-color-main:#007bbb;
             --text-color-next:#ffffff;
+            --text-color:#454545;
 
-            --boder-input-color:#707070;
-            --text-color-input:#818181;
+            --border-input-color:#707070;
+
+            --bu-border-radius:5px;
+            --bu-border-thick:5px;
+            
+            --shadow-size:5px;
+            --shadow-color:#000000b0;
+
+            --input-color:#fafafa;
+            --input-pl-color:#818181;
 
             --nav-color:#707070;
 
-            --boder-box:#000000;
-
-            --bu-boder-radius:5px;
-            --bu-boder-thick:5px;
-            
-            --answer--st:5px;
-            --history--shadow-size:5px;
-            --history--shadow-color:#000000b0;
-            --answer--shadow-color:#000000a8;
-            --history--boder-color:#737373;
-
-            --bu-invalid-color:#7d7d7db0;
-
-            --fil-bg:blur(4px);
         }
-        html .mode--dark {
+        /* ダークモード切り替え */
+        body.mode--dark {
             --bg-body: #606060;
             --bg-main: #323232;
             --bg-bu-color: #ffffff00;
             --bg-header: #3f3f3fae;
             --text-color-next: #ffffff;
             --text-color-main: #009cee;
-            --history--boder-color: #cfcfcf;
             --bg-answer-correct: #434343;
             --input-color:#3c3b3b;
             --bu-answer-color: #aaed0e;
             --info-text-color: #969696;
+            --text-color:#c9c9c9;
+            --nav-color: #dddddd;
+            --input-pl-color:#818181;
+            --bu-invalid-color:#c5c5c5b0; 
         }
+
+        /* ベース */
         *{
-            /* フォントの設定 */
-            font-family: "M PLUS 1p", sans-serif;
-            font-weight: 700;
-            font-style: normal;
-            transition: all 0.3s ease;
+            box-sizing: border-box;
         }
         html{
             scroll-behavior: smooth;
         }
+        a{
+            text-decoration:inherit;
+        }
+
+        /* 注意、ここだけCSSの構造が別のファイルと異なるので注意 */
         body{
             padding: 0;
             margin: 0;
-            width: 100vw;
-            height: 100vh;
+            width: auto;
+            height: 100dvh;
             text-align: center;
+            color: var(--text-color);
+            background-color: var(--bg-main);
+
+            /* フォントの設定 */
+            font-family: "M PLUS 1p", sans-serif;
+            font-weight: 700;
+            font-style: normal;
         }
         button{
             background-color: var(--bg-bu-color);
@@ -68,15 +78,20 @@
             padding: 5px 15px;
             cursor:pointer;
             filter: grayscale(0%);
-            transition: all 0.5s ease;
+            box-shadow: 0px 0px 0px var(--shadow-color);
+            transition: filter 0.2s ease, box-shadow 0.2s ease;
         }
         button:hover{
+            box-shadow: 0px 0px var(--shadow-size) var(--shadow-color);
             filter: grayscale(90%);
         }
-        /* ヘッダー */
+        /* ベースここまで */
+
+        /*ヘッダーは別ファイルから読み込む 
+        差分をここに記述 */
         header button{
-            border: var(--bu-end-color) var(--bu-boder-thick) solid;
-            border-radius: var(--bu-boder-radius);
+            border: var(--bu-end-color) var(--bu-border-thick) solid;
+            border-radius: var(--bu-border-radius);
             text-align: center;
             color: var(--bu-end-color);
             position: absolute;
@@ -136,20 +151,24 @@
             width: 100%;
             margin-top: 10px;
             height: calc(50% - 10px);
-            border: 2px solid var(--boder-input-color);
+            border: 2px solid var(--border-input-color);
             border-radius: 5px;
             padding: 10px;
             font-size: 2.5em;
-            color: var(--text-color-input);
+            color: var(--text-color);
             box-sizing: border-box;
             text-align: center;
-            box-shadow: 0px 0px 5px var(--history--shadow-color);
+            box-shadow: 0px 0px var(--shadow-size) var(--shadow-color);
             background-color: var(--input-color);
-
+            font-weight: 600;
+            transition: border-width 0.2s ,box-shadow 0.5s;
+        }
+        main div input::placeholder{
+            color: var(--input-pl-color);
         }
         main div input:hover{
-            border: 1px solid var(--boder-input-color);
-            box-shadow: 2px 2px 10px var(--history--shadow-color) ;
+            border-width:1px;
+            box-shadow: 2px 2px 10px var(--shadow-color) ;
         }
 
         /* ここからフッター */
@@ -160,14 +179,14 @@
             width: 100%;
             height: 60px;
             background-color: var(--bg-body);
-            box-shadow: 0px 0px var(--history--shadow-size) var(--history--shadow-color);
+            box-shadow: 0px 0px var(--shadow-size) var(--shadow-color);
             display: flex;
             justify-content: space-around;
             align-items: center;
         }
         footer button{
-            border: var(--bu-return-color) var(--bu-boder-thick) solid;
-            border-radius: var(--bu-boder-radius);
+            border: var(--bu-return-color) var(--bu-border-thick) solid;
+            border-radius: var(--bu-border-radius);
             color: var(--text-color-main);
             cursor: pointer;
         }
@@ -184,6 +203,7 @@
             border-color: var(--bu-next-color);
         }
 
+        /* ここからレスポンシブ */
         @media screen and (max-width:425px) {
             main div h2 {
                 font-size: 3.5em;

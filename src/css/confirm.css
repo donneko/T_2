@@ -10,53 +10,49 @@
             
             --text-color-main:#007bbb;
             --text-color-next:#ffffff;
+            --text-color:#000000;
 
-            --boder-input-color:#707070;
-            --text-color-input:#818181;
+            --border-input-color:#707070;
 
             --nav-color:#707070;
 
-            --boder-box:#000000;
+            --bu-border-radius:5px;
+            --bu-border-thick:5px;
 
-            --bu-boder-radius:5px;
-            --bu-boder-thick:5px;
+            --border-ratio:1px;
 
-            --boder-ratio:1px;
-
-            --bu-invalid-color:#7d7d7db0;
             --bg-answer-correct:#dddddd;
 
             --answer--st:5px;
-            --history--shadow-size:5px;
-            --history--shadow-color:#000000b0;
-            --answer--shadow-color:#000000a8;
-            --history--boder-color:#737373;
 
-            --fil-bg:blur(4px);
+            --shadow-size:5px;
+            --shadow-color:#000000b0;
+
+            --answer--shadow-color:#000000a8;
 
             --max-width:1024px;
+        
         }
-        html .mode--dark {
+        /* ダークモード切り替え */
+        body.mode--dark {
             --bg-body: #606060;
             --bg-main: #323232;
             --bg-bu-color: #ffffff00;
             --bg-header: #3f3f3fae;
             --text-color-next: #ffffff;
             --text-color-main: #009cee;
-            --history--boder-color: #cfcfcf;
             --bg-answer-correct: #434343;
             --input-color:#3c3b3b;
             --bu-answer-color: #aaed0e;
             --info-text-color: #969696;
             --nav-color: #dddddd;
+            --text-color:#e2e2e2;
+
         }
+
+        /* ベース */
         *{
-            /* フォントの設定 */
-            font-family: "M PLUS 1p", sans-serif;
-            font-weight: 700;
-            font-style: normal;
             box-sizing: border-box;
-            transition: all 0.3s ease;
         }
         html{
             scroll-behavior: smooth;
@@ -64,11 +60,17 @@
         body{
             padding: 0;
             margin: 0;
-            width: 100vw;
-            height: 100vh;
+            width: 100%;
+            min-height: 100dvh;
             text-align: center;
-            font-size:clamp( 12px, 1.3vw, 22px) ;
+            font-size:clamp( 12px, 1.3vw, 22px);
+            color: var(--text-color);
+            background-color: var(--bg-main);
 
+            /* フォントの設定 */
+            font-family: "M PLUS 1p", sans-serif;
+            font-weight: 700;
+            font-style: normal;
         }
         button{
             background-color: var(--bg-bu-color);
@@ -76,15 +78,20 @@
             padding: 5px 15px;
             cursor:pointer;
             filter: grayscale(0%);
-            transition: all 0.5s ease;
+            box-shadow: 0px 0px 0px var(--shadow-color);
+            transition: filter 0.2s ease, box-shadow 0.2s ease;
         }
         button:hover{
+            box-shadow: 0px 0px var(--shadow-size) var(--shadow-color);
             filter: grayscale(90%);
         }
-        /* ヘッダー */
+        /* ベースここまで */
+
+        /*ヘッダーは別ファイルから読み込む 
+        差分をここに記述 */
         header button{
-            border: var(--bu-home-color) var(--bu-boder-thick) solid;
-            border-radius: var(--bu-boder-radius);
+            border: var(--bu-home-color) var(--bu-border-thick) solid;
+            border-radius: var(--bu-border-radius);
             text-align: center;
             color: var(--bu-home-color);
             position: absolute;
@@ -93,31 +100,29 @@
             transform: translateY(-50%);
         }
 
-        /* メイン */
+        /* ここからメインコンテンツ */
         main{
-            width: 100vw;
-            min-height: 100vh;
+            width: auto;
+            min-height: auto;
             height: auto;
             background-color: var(--bg-main);
             padding: 100px 50px;
             box-sizing: border-box;
         }
+
+        /* パーセント部分 */
         .ratio{
             background-color: var(--bg-answer-correct);
             padding: 20px;
             border-radius: 5px;
-            
             margin: auto;
-
-            box-shadow: 0px 0px var(--history--shadow-size) var(--history--shadow-color);
+            box-shadow: 0px 0px var(--shadow-size) var(--shadow-color);
             border-radius: 10px;
             max-width: var(--max-width);
-
         }
         .ratio--box{
             width: 100%;
             height: 100%;
-
         }
         .ratio__ratios{
             width: 100%;
@@ -127,10 +132,11 @@
             position: relative;
             border-radius: 20px;
             overflow: hidden;
-            box-shadow: 1px 1px 5px #00000070;
+            box-shadow: 1px 1px var(--shadow-size) var(--shadow-color);
+            transition: box-shadow 0.5s ease;
         }
         .ratio__ratios:hover{
-            box-shadow: 4px 4px 6px #00000070;
+            box-shadow: 4px 4px var(--shadow-size) var(--shadow-color);
         }
         #Correct-Bar{
             position: relative;
@@ -158,7 +164,7 @@
             color: var(--bu-error-color);
         }
 
-        /* ナビゲーション */
+        /* リンク（ボタン）部分 */
         nav{
             width: 100%;
             height: auto;
@@ -170,37 +176,35 @@
             margin: 30px auto;
 
             max-width: var(--max-width);
-            
         }
-        nav button:nth-child(1){
-            border: var(--bu-home-color) var(--bu-boder-thick) solid;
-            border-radius: var(--bu-boder-radius);
+        #BackToHome{
+            border: var(--bu-home-color) var(--bu-border-thick) solid;
+            border-radius: var(--bu-border-radius);
             text-align: center;
             color: var(--bu-home-color);
         }
-        nav button:nth-child(2){
-            border: var(--text-color-main) var(--bu-boder-thick) solid;
-            border-radius: var(--bu-boder-radius);
+        #ViewTheIssue{
+            border: var(--text-color-main) var(--bu-border-thick) solid;
+            border-radius: var(--bu-border-radius);
             text-align: center;
             color: var(--text-color-main);
         }
 
-        /* 回答結果 */
+        /* 回答内容 */
         .answer{
             width: 100%;
             height: auto;
             margin: auto;
-            box-shadow: 0px 0px var(--history--shadow-size) var(--history--shadow-color);
+            box-shadow: 0px 0px var(--shadow-size) var(--shadow-color);
             border-radius: 10px;
             max-width: var(--max-width);
             background-color: var(--bg-body);
-
         }
         .answer--box{
             width: 100%;
             height: 6em;
             position: relative;
-            border-top: var(--boder-input-color) var(--boder-ratio) solid;
+            border-top: var(--border-input-color) var(--border-ratio) solid;
         }
         .answer--box:nth-child(1){
             border-top: 0;
@@ -209,13 +213,12 @@
             position: absolute;
             left: 30px;
             top: 50%;
-            border: var(--bu-answer-color) var(--bu-boder-thick) solid;
-            border-radius: var(--bu-boder-radius);
+            border: var(--bu-answer-color) var(--bu-border-thick) solid;
+            border-radius: var(--bu-border-radius);
             text-align: center;
             color: var(--bu-answer-color);
             transform: translateY(-50%);
             z-index: 10;
-
         }
         .answer--box p{
             position: absolute;
@@ -224,7 +227,7 @@
             top: 50%;
             transform: translate(-50% , -50%);
             margin: 0px;
-            font-size: 4em;
+            font-size: 3em;
             color: var(--bu-answer-color);
         }
         .answer__correct{
@@ -241,7 +244,6 @@
             width: 100%;
             height: 100%;
             position: relative;
-
         }
         .answer__correct--box span{
             position: absolute;
@@ -249,13 +251,13 @@
             left: 5px;
             font-size: 1em;
             color: var(--nav-color);
-
         }
         .answer__correct--box p{
             font-size: 2em;
             color: var(--nav-color);
         }
 
+        /* ここからページ上に戻るボタン */
         :root{
             --top-link:50px
         }
@@ -277,14 +279,14 @@
             width: calc(var(--top-link) / 2);
             height: calc(var(--top-link) / 2);
             border: var(--nav-color) 3px solid;
-            
             border-bottom: 0px;
             border-right: 0px;
-
             transform: translate(-50%,-50%) rotate(45deg);
             
         }
 
+
+                /* ここからレスポンシブ */
         @media screen and (max-width:1024px) {
             .answer--box {
                 height: 16em;
@@ -323,8 +325,6 @@
             body {
                 padding: 0;
                 margin: 0;
-                width: 100vw;
-                height: 100vh;
                 text-align: center;
                 font-size: clamp(8px, 1.3vw, 22px);
             }

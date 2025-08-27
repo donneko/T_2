@@ -144,7 +144,7 @@
         const send_url = new URLSearchParams(send).toString();
         const url = `solving.html?${send_url}`;
         console.log(url)
-        window.location.href = url;
+        // window.location.href = url;
     }
 
 

@@ -2,26 +2,28 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
     <title>数学|ホーム画面</title>
 
-        <!-- CSSとJavaScriptのロード -->
+    <!-- CSSとJavaScriptのロード -->
     <link rel="stylesheet" href="./src/css/home.css">
     <link rel="stylesheet" href="./src/common/css/header.css">
+    <script src="./src/common/js/color-mode.js" defer></script>
+    <script src="./src/common/js/header.js" defer></script>
+    <script src="./src/js/home.js" defer></script>
 
     <!-- フォントのロード -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=M+PLUS+1p:wght@100;300;400;500;700;800;900&display=swap" rel="stylesheet">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
 
 </head>
 <body id="color-mode" class="mode--dark">
     <header class="Close" id="header">
         <h1 id="title">ホーム画面</h1>
         <div class="header-info--box">
-            <button id="menu">
+            <button id="menu" type="button" aria-label="メニューを表示する" aria-expanded="false">
                 <span></span>
                 <span></span>
                 <span></span>
@@ -31,45 +33,49 @@
             <a href="./index.html">ホーム画面</a>
             <a href="./info.html">使い方</a>
         </nav>
-        <script src="./src/common/js/header.js"></script>
     </header>
-    <main>
+    <main id="top">
+        <!-- 問題の設定をする場所 -->
         <section class="setting">
             <div class="setting--box">
                 <div>
                     <div class="setting--input">
-                        <p>最大</p>
-                        <input id="max-value" type="number" placeholder="数値を入力">
-                        <p>値</p>
+                        <label for="max-value">最大</label>
+                        <input id="max-value" type="number" placeholder="数値を入力" required>
+                        <span aria-hidden="true">値</span>
                     </div>
                 </div>
                 <div>
                     <div class="setting--input">
-                        <p>最小</p>
-                        <input id="min-value" type="number" placeholder="数値を入力">
-                        <p>値</p>  
+                        <label for="min-value">最小</label>
+                        <input id="min-value" type="number" placeholder="数値を入力" required>
+                        <span aria-hidden="true">値</span>  
                     </div>
                     <div class="setting--input">
-                        <p>問題数</p>
-                        <input id="nal-value" min="0" type="number" placeholder="数値を入力">
-                        <p>数</p>
+                        <label for="nal-value">問題数</label>
+                        <input id="nal-value" min="1" step="1" type="number" placeholder="数値を入力" required>
+                        <span aria-hidden="true">数</span>
                     </div>
                 </div>
             </div>
             <div class="setting__start">
-                <button id="start">はじめる</button>
+                <button id="start" type="button">はじめる</button>
             </div>
         </section>
+        <!-- 履歴部分 -->
         <section class="history">
+            <!-- 履歴のヘッター部分 -->
             <div class="history--title">
                 <h2>履歴</h2>
                 <div class="history__title--box">
-                    <p id="text-lodes">1件</p>
-                    <button id="relode"></button>
+                    <p id="text-loads">1件</p>
+                    <button id="reload" type="button" aria-label="履歴を再読み込み"></button>
                 </div>
             </div>
+            <!-- 履歴表示部分(JSで追加される) -->
             <div class="history--body" id="history-body">
             </div>
+            <!-- ロード中表示部分 -->
             <div id="load" class="history--load" style="display: none;">
                 <div class="history--box road">
                     <span id="road--title"></span>
@@ -96,15 +102,15 @@
                         </div>
                     </div>
             </div>
+            <!-- 履歴のフッダー -->
             <div class="history--footer">
                 <p>履歴はここまで</p>
             </div>
         </section>
     </main>
     <footer id="top-link">
-        <a href="#top"></a>
+        <a href="#top" aria-label="ページ上部へ移動"></a>
     </footer>
-    <script src="./src/js/home.js"></script>
-    <script src="./src/common/js/color-mode.js"></script>
+
 </body>
 </html>

@@ -8,6 +8,10 @@
     <!-- CSSとJavaScriptのロード -->
     <link rel="stylesheet" href="./src/css/generate.css">
     <link rel="stylesheet" href="./src/common/css/header.css">
+    <script src="./src/common/js/color-mode.js" defer></script>
+    <script src="./src/common/js/header.js" defer></script>
+    <script src="./src/js/generate.js" defer></script>
+
 
     <!-- フォントのロード -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -16,10 +20,10 @@
 </head>
 <body id="color-mode" class="mode--dark">
     <header class="Close" id="header">
-        <button id="end">中止</button>
+        <button id="end" type="button">中止</button>
         <h1 id="title">生成中</h1>
         <div class="header-info--box">
-            <button id="menu">
+            <button id="menu" type="button">
                 <span></span>
                 <span></span>
                 <span></span>
@@ -29,7 +33,6 @@
             <a href="./index.html">ホーム画面</a>
             <a href="./info.html">使い方</a>
         </nav>
-        <script src="./src/common/js/header.js"></script>
     </header>
     <main>
         <div>
@@ -43,8 +46,5 @@
             </div>
         </div>
     </main>
-    <script src="./src/js/generate.js"></script>
-    <script src="./src/common/js/color-mode.js"></script>
-
 </body>
 </html>

@@ -3,8 +3,10 @@ const mode = document.getElementById("color-mode")
 
 let mode_name = "auto"
 
-mode_color.addEventListener("change", auto);
 auto()
+
+mode_color.addEventListener("change", auto);
+
 function auto(){
     if(mode_name === "drak"){
         mode.classList.add("mode--dark")
