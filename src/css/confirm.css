@@ -5,7 +5,7 @@
             --bg-header:#ffffffae;
 
             --bu-error-color:#D7003A;
-            --bu-answer-color:#AACF53;
+            --bu-answer-color:#91ca08;
             --bu-home-color:#F8B500;
             
             --text-color-main:#007bbb;
@@ -43,8 +43,9 @@
             --text-color-main: #009cee;
             --bg-answer-correct: #434343;
             --input-color:#3c3b3b;
+            --bu-end-color:#e21818;
             --bu-answer-color: #aaed0e;
-            --info-text-color: #969696;
+            --info-text-color: #e0e0e0;
             --nav-color: #dddddd;
             --text-color:#e2e2e2;
 

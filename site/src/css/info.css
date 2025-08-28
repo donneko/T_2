@@ -8,8 +8,9 @@
 
             --text-color:#424242;
             --text-bg-color:#bcbcbc;
+            --text-example-color:#fafafa;
 
-            --bg-example-color:#ff3939;
+            --bg-example-color:#bf1919;
             --bg-box-example-color: #dddddd;
 
             --bu-border-radius:5px;
@@ -32,12 +33,14 @@
             --bg-main: #323232;
             --bg-bu-color: #ffffff00;
             --bg-header: #3f3f3fae;
-            --info-text-color: #969696;
+            --info-text-color: #e0e0e0;
             --nav-color: #dddddd;
             --text-color:#e2e2e2;
             --text-bg-color:#373737;
             --bg-example-color:#6d2b2b;
+            --text-example-color:#d8d8d8;
             --bg-box-example-color: #525252;
+            --text-color-main: #009cee;
 
         }
 
@@ -201,11 +204,12 @@
         .explanation--info p,
         .About_feature--info p,
         .table_contents--info p{
-            margin-top:0.1em ;
-            margin-bottom: 1.5em;
+            margin-top:0.5em ;
+            margin-bottom: 0.5em;
             background-color: var(--bg-example-color);
             border-radius: var(--text-bg-border-ratio);
             padding: 0 0.2em;
+            color: var(--text-example-color);
         }
         .explanation--info ol,
         .About_feature--info ul,

@@ -5,7 +5,7 @@
             --bg-header:#ffffffae;
 
             --bu-error-color:#D7003A;
-            --bu-answer-color:#AACF53;
+            --bu-answer-color:#91ca08;
             --bu-home-color:#F8B500;
             --bu-first_time:var(--bg-answer-correct);
 
@@ -52,7 +52,8 @@
             --bg-answer-correct: #434343;
             --input-color:#3c3b3b;
             --bu-answer-color: #aaed0e;
-            --info-text-color: #c7c7c7;
+            --info-text-color: #e0e0e0;
+            --bu-end-color:#e21818;
             --text-color:#e2e2e2;
             --bu-first_time:var(--bg-answer-correct);
             --text-color-first_time:var(--text-color);

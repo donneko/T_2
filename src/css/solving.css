@@ -7,7 +7,7 @@
             --bu-end-color:#D7003A;
             --bu-next-color:#007BBB;
             --bu-return-color:#007BBB;
-            --bu-answer-color:#AACF53;
+            --bu-answer-color:#91ca08;
             --bu-invalid-color:#7d7d7db0; 
 
             --text-color-main:#007bbb;
@@ -39,7 +39,8 @@
             --bg-answer-correct: #434343;
             --input-color:#3c3b3b;
             --bu-answer-color: #aaed0e;
-            --info-text-color: #969696;
+            --bu-end-color:#e21818;
+            --info-text-color: #e0e0e0;
             --text-color:#c9c9c9;
             --nav-color: #dddddd;
             --input-pl-color:#818181;
