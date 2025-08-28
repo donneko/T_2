@@ -9,11 +9,16 @@
             --text-color:#424242;
             --text-bg-color:#bcbcbc;
 
+            --bg-example-color:#ff3939;
+            --bg-box-example-color: #dddddd;
+
             --bu-border-radius:5px;
             --bu-border-thick:5px;
 
             --nav-color:#707070;
-            
+
+            --max-width:1024px;
+
             --border-ratio:10px;
             --text-bg-border-ratio:5px;
 
@@ -31,6 +36,8 @@
             --nav-color: #dddddd;
             --text-color:#e2e2e2;
             --text-bg-color:#373737;
+            --bg-example-color:#6d2b2b;
+            --bg-box-example-color: #525252;
 
         }
 
@@ -40,6 +47,9 @@
         }
         html{
             scroll-behavior: smooth;
+        }
+        a{
+            color: inherit;
         }
         body{
             padding: 0;
@@ -103,7 +113,7 @@
             height: auto;
             margin: auto;
             padding: 20px 20px;
-            border-radius: 10px;
+            border-radius: var(--border-ratio);
             box-shadow: 0px 0px var(--shadow-size) var(--shadow-color);
             background-color: var(--bg-body);
         }
@@ -118,15 +128,25 @@
             padding: 0.1em 0.3em;
             border-radius: var(--text-bg-border-ratio);
         }
+        section,
+        .table_contents--body{
+            max-width: var(--max-width);
+        }
 
-        /* 説明のセクション */
-        .explanation--body{
+        /* 目次と説明のセクション 
+        「explanation」・「table_contents」・「About_feature」は共通する場所が多ため共通化
+        */
+        .explanation--body,
+        .About_feature--body,
+        .table_contents--body{
             width: 100%;
             height: auto;
             margin: auto;
             margin-top:100px ;
         }
-        .explanation--box{
+        .explanation--box,
+        .About_feature--box,
+        .table_contents--box{
             margin-top: 50px;
             width: 100%;
             height: auto;
@@ -135,18 +155,62 @@
             box-shadow: 0px 0px var(--shadow-size) var(--shadow-color);
             background-color: var(--bg-body);
         }
-        .explanation--title{
+        .explanation--title,
+        .About_feature--title,
+        .table_contents--title{
             font-size: 2em;
+        }
+        .About_feature--title p{
+            font-size: 0.8em;
         }
         .explanation--image{
             width: 100%;
+            margin-top: 1em;
             aspect-ratio: 16 / 9;
-            background-image: url(../img/info_1.png);
+            background-image: url(../img/substitute.webp);
             background-size: contain;
             background-repeat: no-repeat;
             background-position: center;
             border-radius: var(--border-ratio);
             overflow: hidden; 
+        }
+        .explanation--info,
+        .About_feature--info,
+        .table_contents--info{
+            margin-top: 50px;
+            font-size: 1.5em;
+            padding: 1em;
+            padding-left: 0.1em;
+            border-radius: var(--border-ratio);
+            box-shadow: 0px 0px var(--shadow-size) var(--shadow-color);
+            background-color: var(--bg-box-example-color);            
+        }
+        .About_feature--info{
+            margin-top: 10px;
+        }
+        .explanation--info li,
+        .About_feature--info li,
+        .table_contents--info li{
+            padding: 0.1em 0.3em;
+            padding-left: 2em;
+            margin: 0.2em 0;
+            background-color: var(--text-bg-color);
+            border-radius: var(--text-bg-border-ratio);
+            text-align: left;
+        }
+        .explanation--info p,
+        .About_feature--info p,
+        .table_contents--info p{
+            margin-top:0.1em ;
+            margin-bottom: 1.5em;
+            background-color: var(--bg-example-color);
+            border-radius: var(--text-bg-border-ratio);
+            padding: 0 0.2em;
+        }
+        .explanation--info ol,
+        .About_feature--info ul,
+        .table_contents--info ul{
+            margin: 0;
         }
 
 
@@ -194,6 +258,9 @@
             .explanation--box{
                 padding: 20px 10px;
             }
+            .explanation--info {
+                font-size: 1.2em;
+            }
         }
         @media screen and (max-width:425px) {
             .info--body h2 {
@@ -220,5 +287,11 @@
             }
             #title {
                 left: 55%;
+            }
+            .explanation--info {
+                font-size: 1em;
+            }
+            .explanation--info {
+                padding-left: 0;
             }
         }

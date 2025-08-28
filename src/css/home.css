@@ -353,7 +353,7 @@
         }
         .first_time__info{
             border-radius: 5px;
-            font-size: 6em;
+            font-size: 5.5em;
             padding: 10px;
             background-color: var(--bg-answer-correct);
             box-shadow: 0px 0px var(--shadow-size) var(--shadow-color);
